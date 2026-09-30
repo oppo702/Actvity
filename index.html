@@ -1,550 +1,530 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة قيمة الأمانة والنزاهة</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
-    <!-- Canvas Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { 
-                        cairo: ['Cairo', 'sans-serif'],
-                        amiri: ['Amiri', 'serif']
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0fdf9',
-                            100: '#ccfbef',
-                            500: '#14b8a6',
-                            800: '#115e59',
-                            900: '#134e4a',
-                            950: '#042f2e',
-                        },
-                        gold: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>بوابة الأمانة | القيمة والإنسان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; }
-        
-        /* إعدادات الطباعة للشهادة */
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #d97706;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+        }
+
+        section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        section p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul.section-list {
+            margin-right: 20px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        ul.section-list li {
+            margin-bottom: 10px;
+        }
+
+        .quiz-container {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 16px;
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .options label {
+            display: block;
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .options label:hover {
+            background: #e2e8f0;
+        }
+
+        .options input {
+            margin-left: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+        }
+
+        .certificate-container {
+            display: none;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .certificate {
+            background: #fff;
+            border: 10px solid var(--primary);
+            padding: 50px 30px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .certificate::after {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 2px solid var(--accent);
+            pointer-events: none;
+        }
+
+        .certificate h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .certificate p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .user-name-display {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: underline;
+            margin: 15px 0;
+        }
+
+        .cert-footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+            font-weight: bold;
+            color: var(--text-muted);
+        }
+
+        .name-input-group {
+            margin-bottom: 25px;
+        }
+
+        .name-input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+
         @media print {
-            body * {
-                visibility: hidden;
-            }
-            #certificatePrintArea, #certificatePrintArea * {
-                visibility: visible;
-            }
-            #certificatePrintArea {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                margin: 0;
-                padding: 20px;
-                background: white !important;
-                color: black !important;
-            }
-            .no-print {
-                display: none !important;
-            }
+            body * { visibility: hidden; }
+            .certificate-container, .certificate-container * { visibility: visible; }
+            .certificate-container { position: absolute; left: 0; top: 0; width: 100%; display: block !important; }
+            .btn-print { display: none; }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen">
+<body>
 
-    <!-- Scroll Progress Indicator -->
-    <div id="scrollProgress" class="fixed top-0 right-0 h-1.5 bg-gradient-to-l from-gold-500 to-brand-500 z-50 transition-all duration-150" style="width: 0%"></div>
-
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-800 to-gold-500 flex items-center justify-center text-white text-xl shadow-lg">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-black text-brand-900 dark:text-brand-500">الأمانة والنزاهة</span>
-                    <span class="block text-[10px] text-slate-500 font-semibold uppercase tracking-wider">موسوعة القيم الرقمية</span>
-                </div>
-            </div>
-
-            <!-- Nav Links -->
-            <nav class="hidden lg:flex items-center space-x-4 space-x-reverse text-xs font-bold">
-                <a href="#sec1" class="hover:text-brand-500 transition-colors">1. المفهوم</a>
-                <a href="#sec2" class="hover:text-brand-500 transition-colors">2. الأديان</a>
-                <a href="#sec3" class="hover:text-brand-500 transition-colors">3. التطبيقات</a>
-                <a href="#sec4" class="hover:text-brand-500 transition-colors">4. الأمانة الرقمية</a>
-                <a href="#sec5" class="hover:text-brand-500 transition-colors">5. الثمار</a>
-                <a href="#sec6" class="hover:text-brand-500 transition-colors">6. الخيانة</a>
-                <a href="#sec7" class="hover:text-brand-500 transition-colors">7. التربية</a>
-            </nav>
-
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <a href="#quiz" class="px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-1.5">
-                    <i class="fa-solid fa-clipboard-check"></i> الاختبار والشهادة
-                </a>
-                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:scale-105 transition-all">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block text-gold-400"></i>
-                </button>
-            </div>
-        </div>
+    <header>
+        <h1>موسوعة الأمانة</h1>
+        <p>دليل شامل حول مفهوم الأمانة، أبعادها، وأثرها في بناء الفرد والمجتمع</p>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="relative bg-gradient-to-b from-brand-950 via-brand-900 to-slate-900 text-white py-16 px-4 text-center">
-        <div class="max-w-4xl mx-auto space-y-4">
-            <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-gold-400 text-xs font-bold border border-white/10">
-                <i class="fa-solid fa-award ml-1"></i> دليل الأخلاق الشامل
-            </span>
-            <h1 class="text-3xl sm:text-5xl font-black leading-tight">
-                منصة قيمة الأمانة والنزاهة
-            </h1>
-            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                استكشف الأقسام السبعة الرئيسية واختبر أمانتك ونزاهتك من خلال الاختبار التفاعلي (30 سؤالاً) واحصل على شهادة التقدير الرقمية فوراً.
-            </p>
-        </div>
-    </section>
+    <div class="container">
+        
+        <nav>
+            <ul>
+                <li><a href="#section1">التعريف والمفهوم</a></li>
+                <li><a href="#section2">المنظور الديني</a></li>
+                <li><a href="#section3">أنواع الأمانة</a></li>
+                <li><a href="#section4">الأمانة في العمل</a></li>
+                <li><a href="#section5">الأثر الاجتماعي</a></li>
+                <li><a href="#section6">تربية الأجيال</a></li>
+                <li><a href="#section7">معوقات ومواجهة</a></li>
+                <li><a href="#quiz-section">الاختبار والشهادة</a></li>
+            </ul>
+        </nav>
 
-    <!-- Content Sections -->
-    <main class="max-w-5xl mx-auto px-4 py-12 space-y-12">
-
-        <!-- 1. Mfhoom -->
-        <section id="sec1" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-brand-500 text-white rounded-lg">1</span>
-                <h2 class="text-xl font-black text-brand-900 dark:text-brand-500">مفهوم الأمانة وأبعادها اللغوية والاصطلاحية</h2>
-            </div>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                الأمانة مشتقة من "الأمن"، فالأمين هو من يُطمئن إليه ولا يُخاف غدره. أما في الاصطلاح فهي مفهوم شامل يشمل أداء كافة الحقوق والواجبات الإلهية والإنسانية بحرص وإخلاص.
-            </p>
-            <div class="grid sm:grid-cols-3 gap-4 text-xs">
-                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                    <i class="fa-solid fa-brain text-brand-500 text-lg mb-2"></i>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-1">الأمانة النفسية</h3>
-                    <p class="text-slate-500 dark:text-slate-400">مراقبة الضمير الداخلي والإخلاص في السر والعلن.</p>
-                </div>
-                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                    <i class="fa-solid fa-handshake text-gold-500 text-lg mb-2"></i>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-1">الأمانة الاجتماعية</h3>
-                    <p class="text-slate-500 dark:text-slate-400">حفظ حقوق الآخرين والوفاء بالعقود والمعاملات.</p>
-                </div>
-                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                    <i class="fa-solid fa-graduation-cap text-blue-500 text-lg mb-2"></i>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-1">الأمانة الفكرية</h3>
-                    <p class="text-slate-500 dark:text-slate-400">نسبة الأفكار لأصحابها الحقيقيين والابتعاد عن التزوير.</p>
-                </div>
-            </div>
+        <!-- القسم الأول -->
+        <section id="section1">
+            <h2>1. مفهوم الأمانة وأبعادها النفسية والأخلاقية</h2>
+            <p>تُعتبر الأمانة من أسمى القيم الإنسانية التي ترتكز عليها مجتمعات البشر منذ فجر التاريخ. في اللغة، تتضمن الأمانة معاني الطمأنينة والأمن والوفاء بالعهد، وهي عكس الخيانة تماماً. أما في الاصطلاح الأخلاقي، فالأمانة هي خلق ثرّ وشامل يفرض على الإنسان رعاية الحقوق، وأداء الواجبات، وحفظ الودائع، والصدق في القول والفعل.</p>
+            <p>من الناحية النفسية، تُعد الأمانة مؤشراً رئيساً على النضج الأخلاقي وتكامل الشخصية. فالإنسان الأمين يتملك رقابة ذاتية قوية (الضمير) تمنعه من التعادي على حقوق الآخرين حتى في غياب الرقابة الخارجية. إنها تمثل حالة من الاتساق بين ما يعتقده الفرد وما يمارسه في حياته اليومية.</p>
         </section>
 
-        <!-- 2. Religions -->
-        <section id="sec2" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-brand-500 text-white rounded-lg">2</span>
-                <h2 class="text-xl font-black text-brand-900 dark:text-brand-500">الأمانة في الأديان والثقافات الإنسانية</h2>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-4 text-xs">
-                <div class="p-5 rounded-2xl bg-brand-950 text-white">
-                    <span class="text-gold-400 font-bold mb-2 block"><i class="fa-solid fa-star-and-crescent ml-1"></i> في الشريعة الإسلامية</span>
-                    <p class="leading-relaxed">تُعد الأمانة أساس الإيمان. قال الله تعالى: <span class="text-gold-400 font-bold">﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الأَمَانَاتِ إِلَى أَهْلِهَا﴾</span>، وكان الرسول ﷺ يلقب بـ "الصادق الأمين".</p>
-                </div>
-                <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                    <span class="text-brand-600 dark:text-brand-400 font-bold mb-2 block"><i class="fa-solid fa-globe ml-1"></i> في الموروث البشري</span>
-                    <p class="leading-relaxed">تتفق جميع الثقافات والحضارات على أن النزاهة وحفظ العهد أصل كل مروءة، وأن الغدر والخيانة من أسباب الانهيار الأخلاقي.</p>
-                </div>
-            </div>
+        <!-- القسم الثاني -->
+        <section id="section2">
+            <h2>2. الأمانة في المنظور الديني والشرعي</h2>
+            <p>حظيت قيمة الأمانة بمكانة مركزية في الشرائع السماوية كافة، ولا سيما في الدين الإسلامي حيث جُعلت من دلائل الإيمان ومقومات الشخصية المؤامنة. قال تعالى: ﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الأَمَانَاتِ إِلَى أَهْلِهَا﴾.</p>
+            <p>وقد تجلت هذه القيمة في سيرة النبلاء والصالحين، وكان النبي محمد ﷺ يُلقب في قومه قبل بعثته بـ "الصادق الأمين"، مما يوضح أن قيمة الأمانة هي محل إجماع واحترام حتى قبل التشريعات التفصيلية. الأمانة في الشرع ليست مجرد رد المال المودع، بل هي التزام كامل بكل ما كُلّف به الإنسان من عبادات، ومعاملات، ومسؤوليات تجاه نفسه والمجتمع.</p>
         </section>
 
-        <!-- 3. Applications -->
-        <section id="sec3" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-brand-500 text-white rounded-lg">3</span>
-                <h2 class="text-xl font-black text-brand-900 dark:text-brand-500">صور الأمانة وتطبيقاتها اليومية</h2>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-3 text-xs">
-                <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 font-medium">
-                    <i class="fa-solid fa-piggy-bank text-brand-500 ml-1.5"></i> أمانة الأموال ورَدّ الودائع كاملاً لأصحابها.
-                </div>
-                <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 font-medium">
-                    <i class="fa-solid fa-key text-gold-500 ml-1.5"></i> أمانة السر وكتمان أسرار المجالس والبيوت.
-                </div>
-                <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 font-medium">
-                    <i class="fa-solid fa-briefcase text-blue-500 ml-1.5"></i> أمانة العمل واستغلال وقت الوظيفة في الإنجاز.
-                </div>
-                <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 font-medium">
-                    <i class="fa-solid fa-heart-pulse text-emerald-500 ml-1.5"></i> أمانة الصحة والجوارح بوضعها في طاعة الله والخير.
-                </div>
-            </div>
+        <!-- القسم الثالث -->
+        <section id="section3">
+            <h2>3. صور وأنواع الأمانة في الحياة اليومية</h2>
+            <p>تتعدد مظاهر الأمانة وتتداخل في شتى مناحي الحياة، ومن أبرز صورها:</p>
+            <ul class="section-list">
+                <li><strong>أمانة الجوارح والحواس:</strong> العناية بالجسد والصحة وعدم استخدام الحواس في الإضرار بالنفس أو الآخرين.</li>
+                <li><strong>أمانة العقل والأفكار:</strong> توظيف الفكر في البناء والتطوير وتجنب نشر الشائعات والسموم الفكرية.</li>
+                <li><strong>أمانة حفظ السر:</strong> كتمان الخصوصيات والأسرار الشخصية أو المهنية وعدم إفشائها.</li>
+                <li><strong>أمانة الكلمة:</strong> تحري الصدق والدقة في نقل الأخبار وشهادة الحق، فالكلمة مسؤولية.</li>
+                <li><strong>أمانة المعاملات المالية:</strong> السداد في المواعيد، تجنب الغش في البيع والشراء، والابتعاد عن الرشوة.</li>
+            </ul>
         </section>
 
-        <!-- 4. Digital -->
-        <section id="sec4" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-brand-500 text-white rounded-lg">4</span>
-                <h2 class="text-xl font-black text-brand-900 dark:text-brand-500">الأمانة في عصر التكنولوجيا والذكاء الاصطناعي</h2>
-            </div>
-            <div class="space-y-3 text-xs">
-                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-r-4 border-brand-500">
-                    <strong>احترام البيانات والخصوصية:</strong> عدم تسريب أو استخدام معلومات الآخرين دون إذن.
-                </div>
-                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-r-4 border-gold-500">
-                    <strong>النزاهة البرمجية والأكاديمية:</strong> التنويه بالمصادر المستخدمة وعدم سرقة الأكواد أو الأبحاث.
-                </div>
-                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-r-4 border-blue-500">
-                    <strong>التحقق الرقمي:</strong> الابتعاد عن نشر الشائعات والأخبار المضللة في المنصات الاجتماعية.
-                </div>
-            </div>
+        <!-- القسم الرابع -->
+        <section id="section4">
+            <h2>4. الأمانة الأخلاقية في بيئة العمل والمؤسسات</h2>
+            <p>تُمثل الأمانة المهنية حجر الزاوية في نجاح المؤسسات وازدهار الاقتصاد. وتتجسد هذه القيمة في احترام أوقات العمل، إتقان المهام الموكلة، الحفاظ على ممتلكات المؤسسة، وعدم استغلال المنصب لتحقيق مآرب شخصية.</p>
+            <p>إن غياب الأمانة في بيئة العمل يؤدي إلى انتشارات فساد إداري، وهدر للموارد، وضعف في الإنتاجية. بينما تعزز البيئة القائمة على الأمانة من ثقة العملاء والشركاء، وترفع من كفاءة الأداء والمنافسة الشريفة.</p>
         </section>
 
-        <!-- 5. Positive -->
-        <section id="sec5" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-brand-500 text-white rounded-lg">5</span>
-                <h2 class="text-xl font-black text-brand-900 dark:text-brand-500">الآثار الإيجابية للأمانة</h2>
-            </div>
-            <div class="grid sm:grid-cols-3 gap-4 text-center text-xs">
-                <div class="p-4 rounded-xl bg-brand-50 dark:bg-brand-950/30">
-                    <i class="fa-solid fa-face-smile text-brand-600 text-xl mb-2"></i>
-                    <h3 class="font-bold mb-1">راحة الضمير</h3>
-                    <p class="text-slate-500 dark:text-slate-400">تمنح الإنسان ثقة وسكينة داخلية ومحبة بين الناس.</p>
-                </div>
-                <div class="p-4 rounded-xl bg-gold-50 dark:bg-gold-950/30">
-                    <i class="fa-solid fa-shield-cat text-gold-600 text-xl mb-2"></i>
-                    <h3 class="font-bold mb-1">استقرار المجتمع</h3>
-                    <p class="text-slate-500 dark:text-slate-400">تبني جسور الثقة المتبادلة وتمنع الجرائم والتلاعب.</p>
-                </div>
-                <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30">
-                    <i class="fa-solid fa-chart-line text-blue-600 text-xl mb-2"></i>
-                    <h3 class="font-bold mb-1">النمو الاقتصادي</h3>
-                    <p class="text-slate-500 dark:text-slate-400">تزيد من تدفق الاستثمارات واستقرار التعاملات التجاريّة.</p>
-                </div>
-            </div>
+        <!-- القسم الخامس -->
+        <section id="section5">
+            <h2>5. الأثر الاجتماعي والاقتصادي لانتشار قيمة الأمانة</h2>
+            <p>عندما تتحول الأمانة من سلوك فردي إلى ظاهرة مجتمعية، تتغير معالم المجتمع برمتها. فالأمانة تخلق بيئة من الثقة المتبادلة بين الأفراد والجهات، مما يقلل من تكاليف الحماية والرقابة القانونية المشددة.</p>
+            <p>اقتصادياً، تشجع الأمانة على الاستثمار وتزيد من تدفق رؤوس الأموال لأن المستثمرين يبحثون دائماً عن بيئات آمنة ونزيهة. اجتماعياً، تسهم الأمانة في تقليل نسب الجرائم والتعديات، وتعمل على تعزيز التماسك والتكافل الاجتماعي.</p>
         </section>
 
-        <!-- 6. Consequences -->
-        <section id="sec6" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-red-200 dark:border-red-900/30">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-red-600 text-white rounded-lg">6</span>
-                <h2 class="text-xl font-black text-red-600 dark:text-red-400">عواقب الخيانة وضياع الأمانة</h2>
-            </div>
-            <div class="grid sm:grid-cols-3 gap-3 text-xs">
-                <div class="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50">
-                    <strong class="text-red-700 dark:text-red-300 block mb-1">انهيار الثقة:</strong>
-                    انتشار الشكوك والريبة وتفكك العلاقات الإنسانية.
-                </div>
-                <div class="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50">
-                    <strong class="text-red-700 dark:text-red-300 block mb-1">تدهور الخدمات:</strong>
-                    انتشار الرشوة والغش وسوء جودة المشاريع.
-                </div>
-                <div class="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50">
-                    <strong class="text-red-700 dark:text-red-300 block mb-1">التفكك الأسري:</strong>
-                    بسبب إفشاء الأسرار ونكث العهود بين الأقارب.
-                </div>
-            </div>
+        <!-- القسم السادس -->
+        <section id="section6">
+            <h2>6. دور التربية والتعليم في غرس قيمة الأمانة</h2>
+            <p>لا تتكون قيمة الأمانة تلقائياً، بل هي نتاج عملية تربوية ممتدة تبدأ من الأسرة وتستمر عبر المؤسسات التعليمية والإعلامية. الأسرة هي المدرسة الأولى؛ حين يرى الطفل والديه يمارسان الصدق والأمانة في تفاصيل حياتهما، سينشأ بشكل طبيعي على هذه القيم.</p>
+            <p>أما المناهج الدراسية، فيجب أن تتجاوز التلقين النظري لتقديم مواقف عملية وتطبيقات تفاعلية تُبرز قيمة الأمانة وترسخها لدى الطلاب، مع إبراز القدوات الحسنة وتشجيع السلوكيات الأمينة داخل المدرسة.</p>
         </section>
 
-        <!-- 7. Education -->
-        <section id="sec7" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-800">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold px-3 py-1 bg-brand-500 text-white rounded-lg">7</span>
-                <h2 class="text-xl font-black text-brand-900 dark:text-brand-500">كيف نغرس قيمة الأمانة؟</h2>
-            </div>
-            <div class="grid sm:grid-cols-3 gap-4 text-xs">
-                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <h3 class="font-bold mb-1"><i class="fa-solid fa-users text-brand-500 ml-1"></i>القدوة العملية</h3>
-                    <p class="text-slate-500 dark:text-slate-400">تطبيق الأمانة فعلياً من الآباء والمعلمين أمام الناشئة.</p>
-                </div>
-                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <h3 class="font-bold mb-1"><i class="fa-solid fa-trophy text-gold-500 ml-1"></i>التشجيع والمكافأة</h3>
-                    <p class="text-slate-500 dark:text-slate-400">الثناء على السلوكيات الأمينة الشجاعة لتعزيزها.</p>
-                </div>
-                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
-                    <h3 class="font-bold mb-1"><i class="fa-solid fa-book-open text-blue-500 ml-1"></i>التوعية المستمرة</h3>
-                    <p class="text-slate-500 dark:text-slate-400">دمج الأمانة العلمية والرقمية في الأنشطة المدرسية.</p>
-                </div>
-            </div>
+        <!-- القسم السابع -->
+        <section id="section7">
+            <h2>7. معوقات الأمانة ووسائل تعزيزها في المجتمع</h2>
+            <p>تواجه قيمة الأمانة عدة تحديات في العصر الحديث، منها الطمع والجشع، ضعّف الرقابة الذاتية، التأثر بالبيئات السيئة، والتبريرات الفكرية الزائفة للتعدي على حقوق الآخرين. لمواجهة هذه التحديات يُقترح التالي:</p>
+            <ul class="section-list">
+                <li>تقوية الوازع الأخلاقي والديني لدى الأفراد عبر الخطاب التوعوي المتزن.</li>
+                <li>تطبيق القوانين والأنظمة الصارمة التي تعاقب الخيانة والفساد وتكافئ النزاهة.</li>
+                <li>تفعيل دور الإعلام والمنصات الرقمية في نشر قصص النجاح المبنية على الأمانة والنزاهة.</li>
+                <li>إيجاد قدوات قيادية ومجتمعية تتسم بالأمانة في القول والعمل.</li>
+            </ul>
         </section>
 
-        <!-- 30 Questions Interactive Quiz -->
-        <section id="quiz" class="bg-gradient-to-br from-brand-950 via-brand-900 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
-            <div class="text-center space-y-2">
-                <span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-bold border border-gold-500/30">
-                    اختبار تقييم الأمانة والنزاهة
-                </span>
-                <h2 class="text-2xl sm:text-3xl font-black">اختبار القياس الشامل والشهادة</h2>
-                <p class="text-xs text-slate-300">أدخل اسمك الكريمة وأجب عن الأسئلة الـ 30 لإصدار شهادة الأمانة الخاصة بك:</p>
-
-                <!-- Name Input Box -->
-                <div class="max-w-md mx-auto pt-2">
-                    <label class="block text-right text-xs font-bold text-gold-400 mb-1">الاسم الكامل (سيظهر في الشهادة):</label>
-                    <input type="text" id="userNameInput" placeholder="أدخل اسمك الثلاثي هنا..." class="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-xs placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gold-500 transition-all text-center font-bold">
-                </div>
-
-                <!-- Quiz Progress Bar -->
-                <div class="w-full bg-white/10 h-2.5 rounded-full overflow-hidden mt-4">
-                    <div id="quizProgressBar" class="bg-gold-500 h-full w-0 transition-all duration-300"></div>
-                </div>
-                <div id="progressText" class="text-[11px] text-gold-400 font-bold">الإجابات المكتملة: 0 / 30</div>
+        <!-- قسم الاختبار -->
+        <div class="quiz-container" id="quiz-section">
+            <h2>اختبار تقييم مستوى استيعاب قيمة الأمانة (15 سؤالاً)</h2>
+            <p style="margin-bottom: 20px;">أجب عن الأسئلة التالية للحصول على شهادة الأمانة التقديرية:</p>
+            
+            <div class="name-input-group">
+                <label for="userName"><strong>الاسم الكامل (كما سيظهر في الشهادة):</strong></label>
+                <input type="text" id="userName" placeholder="أدخل اسمك هنا...">
             </div>
 
-            <form id="quizForm" class="space-y-4">
-                <div id="quizQuestionsContainer" class="space-y-3">
-                    <!-- Questions will be rendered via JS -->
+            <form id="quizForm">
+                <!-- الأسئلة -->
+                <div class="question-block">
+                    <div class="question-title">1. ما المعنى اللغوي الأقرب للأمانة؟</div>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="correct"> الطمأنينة والأمن والوفاء</label>
+                        <label><input type="radio" name="q1" value="wrong"> القوة والسيطرة</label>
+                    </div>
                 </div>
 
-                <button type="button" onclick="calculateScore()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-slate-950 font-black text-sm shadow-xl transition-all transform active:scale-95 mt-6">
-                    حساب النتيجة وإصدار شهادة الأمانة
-                </button>
+                <div class="question-block">
+                    <div class="question-title">2. ما هو عكس الأمانة؟</div>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="correct"> الخيانة</label>
+                        <label><input type="radio" name="q2" value="wrong"> البخل</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">3. اللقب الذي أطلق على النبي محمد ﷺ قبل البعثة هو:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="correct"> الصادق الأمين</label>
+                        <label><input type="radio" name="q3" value="wrong"> الكريم الشجاع</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">4. حفظ أسرار الآخرين يُعتبر نوعاً من أنواع:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="correct"> الأمانة</label>
+                        <label><input type="radio" name="q4" value="wrong"> المجاملة</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">5. احترام أوقات العمل والمحافظة على موارد الشركة يعد من أمانة:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="correct"> العمل والمهنة</label>
+                        <label><input type="radio" name="q5" value="wrong"> العبادة فقط</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">6. الضمير الأخلاقي الداخلي هو المحرك الرئيسي للأمانة في غياب الرقابة.</div>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="correct"> عبارة صحيحة</label>
+                        <label><input type="radio" name="q6" value="wrong"> عبارة خاطئة</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">7. أمانة الجوارح تتضمن:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="correct"> استخدام الجسد والحواس فيما ينفع وتجنب الضرر</label>
+                        <label><input type="radio" name="q7" value="wrong"> إهمال الصحة العامة</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">8. انتشار الأمانة في المجتمع يؤدي إلى:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="correct"> زيادة الثقة والازدهار الاقتصادي</label>
+                        <label><input type="radio" name="q8" value="wrong"> زيادة التكاليف والرقابة</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">9. البيئة الأولى التي تنمي قيمة الأمانة لدى الطفل هي:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="correct"> الأسرة</label>
+                        <label><input type="radio" name="q9" value="wrong"> وسائل التواصل الاجتماعي</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">10. أمانة الكلمة تعني:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="correct"> تحري الصدق والعدل في القول والشهادة</label>
+                        <label><input type="radio" name="q10" value="wrong"> الحديث بكل شيء دون التأكد</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">11. قبول الرشوة والاستغلال الوظيفي يُعد صوراً من صور:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="correct"> الخيانة وفساد الأمانة</label>
+                        <label><input type="radio" name="q11" value="wrong"> الذكاء الإداري</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">12. هل تقتصر الأمانة على رد الأموال المادية فقط؟</div>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="wrong"> نعم فقط الأموال</label>
+                        <label><input type="radio" name="q12" value="correct"> لا، تشمل القول والفعل والمسؤوليات</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">13. عدم إفشاء الأخبار الكاذبة والمضللة يدخل ضمن:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="correct"> أمانة نقل المعرفة والفكر</label>
+                        <label><input type="radio" name="q13" value="wrong"> حرية التعبير المطلقة</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">14. إتقان العمل وجودة المخرجات يعتبر جزءاً من أمانة المهنة.</div>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="correct"> عبارة صحيحة</label>
+                        <label><input type="radio" name="q14" value="wrong"> عبارة خاطئة</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">15. تعزيز قيمة الأمانة يحتاج إلى:</div>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="correct"> الوازع الداخلي والقوانين والقدوة الحسنة</label>
+                        <label><input type="radio" name="q15" value="wrong"> الرقابة الخارجية فقط</label>
+                    </div>
+                </div>
+
+                <button type="button" class="btn" onclick="submitQuiz()">إنهاء الاختبار وإصدار الشهادة</button>
             </form>
+        </div>
 
-            <!-- Result Card -->
-            <div id="resultCard" class="hidden p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-center space-y-3">
-                <h3 class="text-lg font-bold text-gold-400">النتيجة النهائية للاختبار</h3>
-                <div id="scoreDisplay" class="text-4xl sm:text-5xl font-black text-white">0 / 30</div>
-                <p id="scoreFeedback" class="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-lg mx-auto"></p>
-                <div class="pt-2 flex justify-center gap-3">
-                    <button onclick="resetQuiz()" class="px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white text-xs font-bold transition-all">
-                        إعادة محاولة الاختبار
-                    </button>
+        <!-- الشهادة -->
+        <div class="certificate-container" id="certificateContainer">
+            <div class="certificate">
+                <h3>شهادة الأمانة والنزاهة</h3>
+                <p>تشهد إدارة منصة "موسوعة الأمانة" بأن:</p>
+                <div class="user-name-display" id="displayName">[اسم المستخدم]</div>
+                <p>قد أتم قراءة المحتوى التوعوي بنجاح واجتاز اختبار قيمة الأمانة بنسبة ممتازة، مقدراً أهمية هذه القيمة في بناء الفرد والمجتمع.</p>
+                <div class="cert-footer">
+                    <div>التاريخ: <span id="certDate"></span></div>
+                    <div>اعتماد: إدارة المنصة الأخلاقية</div>
                 </div>
             </div>
+            <button class="btn btn-print" style="margin-top: 20px;" onclick="window.print()">طباعة الشهادة</button>
+        </div>
 
-            <!-- CERTIFICATE SECTION (شهادة الأمانة) -->
-            <div id="certificateWrapper" class="hidden pt-6">
-                <div id="certificatePrintArea" class="bg-white text-slate-900 rounded-3xl p-8 sm:p-12 border-8 border-double border-gold-500 shadow-2xl relative overflow-hidden text-center max-w-3xl mx-auto">
-                    
-                    <!-- Certificate Background Emblem -->
-                    <div class="absolute -right-10 -bottom-10 opacity-5 text-brand-900 pointer-events-none">
-                        <i class="fa-solid fa-shield-halved text-[250px]"></i>
-                    </div>
+    </div>
 
-                    <!-- Header -->
-                    <div class="flex justify-between items-center border-b-2 border-gold-500/30 pb-4 mb-6">
-                        <div class="text-right">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">منصة موسوعة القيم</span>
-                            <span class="text-xs font-black text-brand-900">قيمة الأمانة والنزاهة</span>
-                        </div>
-                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-800 to-gold-500 flex items-center justify-center text-white text-2xl shadow-md">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <div class="text-left">
-                            <span class="text-[10px] font-bold text-slate-400 block">تاريخ الإصدار</span>
-                            <span id="certDate" class="text-xs font-bold text-slate-700">--/--/----</span>
-                        </div>
-                    </div>
-
-                    <!-- Certificate Title -->
-                    <div class="space-y-2 mb-6">
-                        <h3 class="text-xs font-bold text-gold-600 uppercase tracking-widest">شهادة تقدير واجتياز</h3>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold font-amiri text-brand-950">شهادة سفير الأمانة والنزاهة</h2>
-                    </div>
-
-                    <!-- Certificate Body -->
-                    <div class="space-y-4 my-6">
-                        <p class="text-xs text-slate-500 font-semibold">تشهد منصة قيمة الأمانة والنزاهة بأن الكريـم/ـة:</p>
-                        <div id="certName" class="text-2xl sm:text-3xl font-black text-brand-800 underline decoration-gold-500 decoration-2 underline-offset-8 py-2">
-                            [اسم المتدرب]
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed pt-2">
-                            قد أتم/ت بنجاح اختبار تقييم الأمانة والنزاهة الشامل (30 سؤالاً) وحصل/ت على درجة قدرها 
-                            <span id="certScore" class="font-bold text-gold-600">0%</span> 
-                            مظهرين التزاماً واعتزازاً عالياً بالقيم الأخلاقية، والنزاهة الأكاديمية والمهنية.
-                        </p>
-                    </div>
-
-                    <!-- Footer Signatures -->
-                    <div class="grid grid-cols-2 gap-8 border-t border-slate-200 pt-6 mt-8 text-xs font-bold">
-                        <div>
-                            <span class="text-slate-400 block text-[10px] mb-1">الاعتماد البرمجي</span>
-                            <span class="text-brand-900">منصة القيم الرقمية</span>
-                        </div>
-                        <div>
-                            <span class="text-slate-400 block text-[10px] mb-1">ختم التميز</span>
-                            <span class="text-gold-600 font-extrabold"><i class="fa-solid fa-certificate ml-1"></i> مُجتاز بنجاح</span>
-                        </div>
-                    </div>
-
-                    <!-- Print Button Inside Card (No-print class) -->
-                    <div class="mt-8 no-print">
-                        <button onclick="window.print()" class="px-6 py-3 rounded-xl bg-brand-800 hover:bg-brand-900 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center gap-2 mx-auto">
-                            <i class="fa-solid fa-print"></i> طباعة الشهادة / حفظ PDF
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 py-8 text-center text-xs space-y-1">
-        <p class="font-bold text-slate-200">منصة قيمة الأمانة والنزاهة الرقمية &copy; 2026</p>
-        <p class="text-slate-500">تم بناء الموقع لخدمة ونشر القيم والمبادئ الأخلاقية.</p>
-    </footer>
-
-    <!-- Script Logic -->
     <script>
-        const questionsList = [
-            "هل تحرص على إعادة الأموال أو الأغراض المستعارة لأصحابها في موعدها المحدد؟",
-            "إذا ائتمنك صديق على سر شخصي، هل تكتمه تماماً ولا تفشيه لغيره؟",
-            "عند إنجاز بحث أو واجب دراسي، هل تتجنب نسخ النصوص دون ذكر مصادرها؟",
-            "إذا وجدت شيئاً مفقوداً في مكان عام، هل تحرص على تسليمه للجهات المختصة؟",
-            "هل تلتزم بأداء عملك أو دراستك بجدية دون الحاجة إلى وجود مراقب؟",
-            "إذا ارتكبت خطأ غير مقصود، هل تعترف به بصدق بدلاً من إتّهام غيرك؟",
-            "عندما تُطلب منك شهادة في موقف ما، هل تقول الحقيقة دون تحريف أو مجاملة؟",
-            "هل تحترم خصوصية الآخرين وتتجنب التلصص على هواتفهم أو أوراقهم؟",
-            "عند استخدام برامج أو ذكاء اصطناعي، هل توضح وتذكر المصادر المستخدمة بوضوح؟",
-            "هل تتجنب مشاركة الأخبار والشائعات غير المؤكدة عبر منصات التواصل الاجتماعي؟",
-            "إذا أرجع لك البائع باقي مال بالزيادة عن طريق الخطأ، هل تعيدها فوراً؟",
-            "هل تحافظ على الممتلكات والمرافق العامة كما تحافظ على ممتلكاتك الخاصة؟",
-            "هل تلتزم بالوعود والعهود التي تقطعها على نفسك حتى في الظروف الصعبة؟",
-            "هل تبتعد عن استخدام المحسوبية أو تقديم الرشوة للحصول على حق ليس لك؟",
-            "هل تحرص على إتقان جودة العمل الذي تؤديه حتى في أبسط جوانبه؟",
-            "هل تحافظ على الأدوات والجهزة المستلمة في مقر عملك أو مدرستك بعناية؟",
-            "إذا كُلّفت بميزانية أو أمانة مالية لفرق أو مشروع، هل تسجل كافة المصاريف بدقة؟",
-            "هل تبتعد عن التلاعب في أوقات الحضور والانصراف ببيئة العمل أو الدراسة؟",
-            "عند شراء أي منتج، هل تتجنب ترويج الفواتير المزيفة أو التلاعب بالأسعار؟",
-            "هل ترفض استغلال علاقاتك الشخصية لتحقيق مكاسب غير مشروعة على حساب الآخرين؟",
-            "إذا علمت بوجود معلومات خاطئة أو شائعة تمس سمة شخص ما، هل ترفض تداولها؟",
-            "هل تفي بالعقود والاتفاقيات الشفهية مع الآخرين بنفس درجة العقود المكتوبة؟",
-            "عند أداء الامتحانات أو التقييمات، هل تبتعد تماماً عن الغش بجميع وسائله؟",
-            "هل تحرص على إرجاع الكتب والأدوات التي تستعيرها من المكتبات في حالتها السليمة؟",
-            "إذا طلبت منك النصيحة في موضوع مهم، هل تقدمها بصدق دون إخفاء معلومات جوهرية؟",
-            "هل تحترم الملكية الفكرية وتتجنب تحميل البرامج والمحتويات القرصنية؟",
-            "إذا تسلمت رسالة أو بريداً الكترونياً عن طريق الخطأ، هل تحذفها دون قراءتها أو نشرها؟",
-            "هل تتجنب استخدام نفوذك أو منصباك القيادي للحصول على مزايا شخصية؟",
-            "عند التعامل مع الأطفال أو الأصغر سناً، هل تفي بالوعود التي تقطعها لهم بصدق؟",
-            "هل تشعر براحة الضمير والسكينة عندما تتخذ قراراتك بناءً على معيار الأمانة والصدق؟"
-        ];
-
-        const quizQuestionsContainer = document.getElementById('quizQuestionsContainer');
-
-        // Render Questions
-        questionsList.forEach((qText, idx) => {
-            const item = document.createElement('div');
-            item.className = "p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2";
-            item.innerHTML = `
-                <div class="flex items-start gap-2">
-                    <span class="w-5 h-5 rounded-full bg-gold-500 text-slate-950 font-extrabold text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
-                    <p class="text-xs font-semibold text-slate-100 leading-relaxed">${qText}</p>
-                </div>
-                <div class="flex items-center gap-6 pr-7 text-xs">
-                    <label class="flex items-center gap-1.5 cursor-pointer">
-                        <input type="radio" name="q${idx}" value="1" onchange="updateProgress()" class="accent-gold-500">
-                        <span>دائماً (نعم)</span>
-                    </label>
-                    <label class="flex items-center gap-1.5 cursor-pointer">
-                        <input type="radio" name="q${idx}" value="0.5" onchange="updateProgress()" class="accent-gold-500">
-                        <span>أحياناً</span>
-                    </label>
-                    <label class="flex items-center gap-1.5 cursor-pointer">
-                        <input type="radio" name="q${idx}" value="0" onchange="updateProgress()" class="accent-gold-500">
-                        <span>نادراً (لا)</span>
-                    </label>
-                </div>
-            `;
-            quizQuestionsContainer.appendChild(item);
-        });
-
-        function updateProgress() {
-            let count = 0;
-            for(let i = 0; i < 30; i++) {
-                if(document.querySelector(`input[name="q${i}"]:checked`)) count++;
-            }
-            document.getElementById('quizProgressBar').style.width = (count / 30 * 100) + '%';
-            document.getElementById('progressText').innerText = `الإجابات المكتملة: ${count} / 30`;
-        }
-
-        function calculateScore() {
-            const userName = document.getElementById('userNameInput').value.trim();
-            if(!userName) {
-                alert('يرجى إدخال اسمك الكامل قبل حساب النتيجة لإصداره في الشهادة.');
-                document.getElementById('userNameInput').focus();
+        function submitQuiz() {
+            const nameInput = document.getElementById('userName').value.trim();
+            if (nameInput === '') {
+                alert('يرجى إدخال اسمك الكامل قبل إنهاء الاختبار.');
                 return;
             }
 
-            let total = 0;
-            let answered = 0;
+            let correctCount = 0;
+            const totalQuestions = 15;
 
-            for(let i = 0; i < 30; i++) {
-                const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                if(selected) {
-                    total += parseFloat(selected.value);
-                    answered++;
+            for (let i = 1; i <= totalQuestions; i++) {
+                const options = document.getElementsByName('q' + i);
+                for (let option of options) {
+                    if (option.checked && option.value === 'correct') {
+                        correctCount++;
+                    }
                 }
             }
 
-            if(answered < 30) {
-                alert(`يرجى الإجابة على جميع الأسئلة الـ 30 لاحتساب التقييم الكامل. (المكتمل حتى الآن: ${answered}/30)`);
-                return;
-            }
-
-            const percentage = Math.round((total / 30) * 100);
-
-            // Update Result Card
-            document.getElementById('scoreDisplay').innerText = `${total} / 30 (${percentage}%)`;
-            const feedback = document.getElementById('scoreFeedback');
-
-            if(percentage >= 80) {
-                feedback.innerText = `درجة امتياز (${percentage}%)! تهانينا، أنت تتمتع بمستوى عالٍ من الأمانة والنزاهة تم استحقاق شهادة التقدير بنجاح.`;
-                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
-            } else if(percentage >= 60) {
-                feedback.innerText = `درجة جيدة جداً (${percentage}%)! لديك حرص ممتاز على الأمانة، وتم منحك الشهادة لتشجيعك على المواصلة.`;
+            if (correctCount >= 10) {
+                document.getElementById('displayName').innerText = nameInput;
+                const today = new Date();
+                document.getElementById('certDate').innerText = today.toLocaleDateString('ar-SA');
+                
+                document.getElementById('certificateContainer').style.display = 'block';
+                document.getElementById('certificateContainer').scrollIntoView({ behavior: 'smooth' });
             } else {
-                feedback.innerText = `درجتك هي (${percentage}%). يُنصح بمراجعة محاور المنصة وتدعيم قيمة الأمانة في القرارات اليومية.`;
+                alert(`لقد أجبت بشكل صحيح على ${correctCount} من 15 سؤالاً. يرجى مراجعة المحتوى وإعادة المحاولة للحصول على الشهادة.`);
             }
-
-            document.getElementById('resultCard').classList.remove('hidden');
-
-            // Generate Certificate
-            document.getElementById('certName').innerText = userName;
-            document.getElementById('certScore').innerText = `${percentage}%`;
-            
-            const today = new Date();
-            document.getElementById('certDate').innerText = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`;
-            
-            document.getElementById('certificateWrapper').classList.remove('hidden');
-            document.getElementById('certificateWrapper').scrollIntoView({ behavior: 'smooth' });
         }
-
-        function resetQuiz() {
-            document.getElementById('quizForm').reset();
-            document.getElementById('resultCard').classList.add('hidden');
-            document.getElementById('certificateWrapper').classList.add('hidden');
-            document.getElementById('quizProgressBar').style.width = '0%';
-            document.getElementById('progressText').innerText = 'الإجابات المكتملة: 0 / 30';
-        }
-
-        // Dark Theme
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-        });
-
-        // Scroll Bar Progress
-        window.onscroll = () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scrollProgress").style.width = (winScroll / height * 100) + "%";
-        };
     </script>
 </body>
 </html>
