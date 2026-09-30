@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المنصة الوطنية للنزاهة وقيمة الأمانة</title>
-    <!-- استدعاء خطوط عربية احترافية -->
+    <title>المنصة الوطنية للنزاهة وتأصيل قيمة الأمانة</title>
+    <!-- استدعاء خطوط عربية فاخرة ورسمية -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-body: #f4f6f9;
-            --primary: #0f2c59;
-            --primary-light: #18458b;
-            --accent: #c59b27;
-            --accent-light: #f3e5ab;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --primary: #0a2540;
+            --primary-light: #1e3a8a;
+            --accent: #b48628;
+            --accent-light: #fef08a;
+            --bg-main: #f8fafc;
             --card-bg: #ffffff;
+            --text-title: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --shadow-sm: 0 2px 8px rgba(15, 44, 89, 0.06);
-            --shadow-md: 0 10px 25px rgba(15, 44, 89, 0.08);
-            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --shadow-soft: 0 10px 30px rgba(10, 37, 64, 0.05);
+            --shadow-hover: 0 20px 40px rgba(10, 37, 64, 0.12);
         }
 
         * {
@@ -32,65 +33,77 @@
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.9;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            line-height: 2;
             overflow-x: hidden;
         }
 
-        /* الهيدر الرئيسي */
+        /* الهيدر القيادي */
         header {
-            background: linear-gradient(135deg, #0b1f3f 0%, var(--primary) 60%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, #051329 0%, var(--primary) 50%, #173252 100%);
             color: #ffffff;
-            padding: 80px 20px;
+            padding: 90px 20px 80px;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            border-bottom: 4px solid var(--accent);
         }
 
-        header::before {
+        header::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(197, 155, 39, 0.1) 0%, transparent 60%);
-            pointer-events: none;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(180, 134, 40, 0.2);
+            color: var(--accent-light);
+            border: 1px solid var(--accent);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         header h1 {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 3.2rem;
+            font-weight: 900;
             margin-bottom: 15px;
-            letter-spacing: -0.5px;
+            color: #ffffff;
         }
 
         header p {
-            font-size: 1.25rem;
-            max-width: 700px;
+            font-size: 1.3rem;
+            max-width: 800px;
             margin: 0 auto;
-            color: #cbd5e1;
+            color: #94a3b8;
             font-weight: 400;
         }
 
+        /* الحاوية الرئيسية */
         .container {
-            max-width: 1140px;
-            margin: -40px auto 60px;
+            max-width: 1160px;
+            margin: -30px auto 80px;
             padding: 0 20px;
             position: relative;
             z-index: 10;
         }
 
-        /* شريط التنقل */
+        /* شريط التصفح */
         nav {
             background: var(--card-bg);
-            padding: 12px 20px;
+            padding: 12px 15px;
             border-radius: 16px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 45px;
+            border: 1px solid var(--border-color);
             position: sticky;
             top: 20px;
             z-index: 100;
@@ -101,208 +114,236 @@
             justify-content: center;
             flex-wrap: wrap;
             list-style: none;
-            gap: 8px;
+            gap: 6px;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
+            color: var(--text-title);
+            font-weight: 700;
             padding: 10px 18px;
             border-radius: 10px;
             transition: all 0.3s ease;
             font-size: 0.95rem;
         }
 
-        nav a:hover, nav a.active {
+        nav a:hover {
             background-color: var(--primary);
             color: #ffffff;
-            box-shadow: var(--shadow-sm);
         }
 
-        /* الأقسام العلمية */
+        nav a.btn-nav-quiz {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        nav a.btn-nav-quiz:hover {
+            background: #966e1e;
+        }
+
+        /* الأقسام السبعة */
         .content-card {
             background: var(--card-bg);
-            padding: 45px;
-            margin-bottom: 35px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
+            padding: 50px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .content-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+
+        .section-number {
+            background: var(--primary);
+            color: var(--accent-light);
+            font-weight: 800;
+            font-size: 1.2rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-shrink: 0;
         }
 
         .content-card h2 {
             color: var(--primary);
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 800;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .content-card h2::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 32px;
-            background: var(--accent);
-            border-radius: 4px;
         }
 
         .content-card p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+            color: var(--text-body);
+            font-size: 1.12rem;
             margin-bottom: 20px;
             text-align: justify;
         }
 
         .styled-list {
             list-style: none;
-            margin: 20px 0;
+            margin: 25px 0;
             padding-right: 10px;
         }
 
         .styled-list li {
             position: relative;
-            padding-right: 30px;
-            margin-bottom: 12px;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 1.05rem;
+            padding-right: 32px;
+            margin-bottom: 16px;
+            color: var(--text-title);
+            font-weight: 600;
+            font-size: 1.08rem;
         }
 
         .styled-list li::before {
-            content: "✓";
+            content: "✦";
             position: absolute;
             right: 0;
             top: 0;
             color: var(--accent);
-            font-weight: bold;
             font-size: 1.2rem;
         }
 
-        /* قسم الاختبار */
+        /* قسم الاختبار التقييمي */
         .quiz-wrapper {
             background: var(--card-bg);
-            padding: 50px;
+            padding: 55px;
             border-radius: 24px;
-            box-shadow: var(--shadow-md);
-            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-hover);
+            border: 2px solid var(--primary);
         }
 
         .quiz-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
         .quiz-header h2 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+        }
+
+        .user-info-box {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .user-info-box label {
+            display: block;
+            font-weight: 800;
+            font-size: 1.15rem;
             color: var(--primary);
             margin-bottom: 10px;
         }
 
-        .user-info-field {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 35px;
-        }
-
-        .user-info-field label {
-            display: block;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .user-info-field input {
+        .user-info-box input {
             width: 100%;
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 2px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 1.05rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: 0.3s;
+            background: #ffffff;
         }
 
-        .user-info-field input:focus {
+        .user-info-box input:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(10, 37, 64, 0.1);
         }
 
         .question-card {
             background: #f8fafc;
-            padding: 25px;
+            padding: 28px;
             border-radius: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             border: 1px solid var(--border-color);
         }
 
         .question-card h4 {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--primary);
-            margin-bottom: 15px;
-            font-weight: 700;
+            margin-bottom: 18px;
+            font-weight: 800;
+            line-height: 1.6;
         }
 
         .options-grid {
             display: grid;
-            gap: 10px;
+            gap: 12px;
         }
 
         .option-label {
             display: flex;
             align-items: center;
             background: #ffffff;
-            padding: 12px 20px;
-            border-radius: 10px;
+            padding: 14px 22px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: all 0.2s ease;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.05rem;
         }
 
         .option-label:hover {
-            border-color: var(--primary-light);
+            border-color: var(--primary);
             background: #f1f5f9;
         }
 
         .option-label input {
-            margin-left: 12px;
+            margin-left: 14px;
+            width: 20px;
+            height: 20px;
             accent-color: var(--primary);
-            width: 18px;
-            height: 18px;
         }
 
-        .btn-submit {
+        .btn-submit-quiz {
             display: block;
             width: 100%;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 18px;
+            color: #ffffff;
+            padding: 20px;
             border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 700;
+            border-radius: 14px;
+            font-size: 1.3rem;
+            font-weight: 800;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(15, 44, 89, 0.2);
+            transition: all 0.3s ease;
+            margin-top: 35px;
+            box-shadow: 0 10px 25px rgba(10, 37, 64, 0.25);
         }
 
-        .btn-submit:hover {
+        .btn-submit-quiz:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(15, 44, 89, 0.3);
+            box-shadow: 0 15px 35px rgba(10, 37, 64, 0.35);
         }
 
-        /* واجهة الشهادة المنفصلة بالكامل */
+        /* ==========================================
+           واجهة الشهادة المنفصلة كلياً (Full Screen)
+        ========================================== */
         #certificate-screen {
             display: none;
             position: fixed;
@@ -310,137 +351,165 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #1a202c;
-            z-index: 9999;
+            background-color: #0f172a;
+            z-index: 999999;
             overflow-y: auto;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
-        .certificate-page-container {
-            max-width: 900px;
+        .cert-container {
+            max-width: 950px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .cert-frame {
+        .cert-paper {
             background: #ffffff;
-            padding: 60px 50px;
+            padding: 60px;
             border-radius: 12px;
-            border: 12px solid var(--primary);
-            box-shadow: var(--shadow-lg);
+            border: 14px solid var(--primary);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             position: relative;
-            background-image: radial-gradient(circle at center, #ffffff 0%, #fafafa 100%);
+            background-image: radial-gradient(circle at center, #ffffff 0%, #faf8f5 100%);
         }
 
-        .cert-border-inner {
-            border: 2px solid var(--accent);
-            padding: 40px 30px;
+        .cert-inner-frame {
+            border: 3px double var(--accent);
+            padding: 45px 35px;
+            text-align: center;
             position: relative;
         }
 
-        .cert-header-title {
-            font-family: 'Amiri', serif;
-            font-size: 3rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .cert-subtitle {
-            font-size: 1.2rem;
+        .cert-top-logo {
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--accent);
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
-        .cert-body-text {
+        .cert-main-title {
+            font-family: 'Amiri', serif;
+            font-size: 3.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .cert-sub-title {
             font-size: 1.25rem;
-            color: #334155;
-            margin-bottom: 20px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        .cert-recipient-label {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            margin-bottom: 15px;
         }
 
         .cert-user-name {
             font-family: 'Amiri', serif;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 700;
             color: var(--primary);
-            margin: 25px 0;
-            border-bottom: 2px dashed var(--accent);
+            margin: 10px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
             display: inline-block;
-            padding: 0 30px 10px;
+            min-width: 400px;
         }
 
-        .cert-desc {
-            font-size: 1.15rem;
-            color: #475569;
-            max-width: 700px;
+        .cert-text-body {
+            font-size: 1.2rem;
+            color: #334155;
+            max-width: 750px;
             margin: 0 auto 40px;
-            line-height: 2;
+            line-height: 2.1;
         }
 
-        .cert-footer-grid {
+        .cert-footer-details {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
             margin-top: 50px;
-            padding-top: 20px;
+            padding-top: 25px;
             border-top: 1px solid var(--border-color);
         }
 
-        .cert-stamp {
-            width: 100px;
-            height: 100px;
+        .cert-footer-box {
+            text-align: center;
+        }
+
+        .cert-footer-box .title {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .cert-footer-box .value {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .official-seal {
+            width: 110px;
+            height: 110px;
             border: 3px double var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent);
-            font-weight: bold;
-            font-size: 0.85rem;
-            transform: rotate(-15deg);
+            font-weight: 800;
+            font-size: 0.9rem;
+            transform: rotate(-12deg);
+            background: rgba(180, 134, 40, 0.05);
+            box-shadow: 0 0 0 4px #ffffff, 0 0 0 6px var(--accent);
             margin: 0 auto;
         }
 
-        .cert-actions {
-            margin-top: 30px;
+        .cert-actions-bar {
+            margin-top: 35px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .btn-action {
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
             border: none;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
-        .btn-print {
+        .btn-action-print {
             background: var(--accent);
             color: #ffffff;
+            box-shadow: 0 8px 20px rgba(180, 134, 40, 0.3);
         }
 
-        .btn-print:hover {
-            background: #b08920;
+        .btn-action-print:hover {
+            background: #966e1e;
         }
 
-        .btn-back {
-            background: #475569;
+        .btn-action-close {
+            background: #334155;
             color: #ffffff;
         }
 
-        .btn-back:hover {
-            background: #334155;
+        .btn-action-close:hover {
+            background: #1e293b;
         }
 
-        /* تنسيقات الطباعة الممتازة */
+        /* إعدادات الطباعة الرسمية النظيفة جداً */
         @media print {
             body {
                 background: white !important;
@@ -458,12 +527,12 @@
                 padding: 0 !important;
                 display: block !important;
             }
-            .cert-actions {
+            .cert-actions-bar {
                 display: none !important;
             }
-            .cert-frame {
+            .cert-paper {
                 box-shadow: none !important;
-                border-width: 8px !important;
+                border-width: 10px !important;
             }
         }
     </style>
@@ -471,100 +540,130 @@
 <body>
 
     <header>
-        <h1>المنصة الوطنية للنزاهة وقيمة الأمانة</h1>
-        <p>مرجع علمي شامل حول قيمة الأمانة ودورها في بناء المجتمعات المستدامة والأخلاقية</p>
+        <div class="header-badge">المنظومة الأخلاقية الوطنية</div>
+        <h1>موسوعة وقيمة الأمانة</h1>
+        <p>مرجع مؤسسي معتمد لبناء وتعزيز سلوكيات النزاهة والمسؤولية الأخلاقية في الفرد والمجتمع</p>
     </header>
 
     <div class="container">
         
+        <!-- التصفح -->
         <nav>
             <ul>
                 <li><a href="#sec1">التعريف والمفهوم</a></li>
                 <li><a href="#sec2">المنظور الشرعي</a></li>
                 <li><a href="#sec3">أنواع الأمانة</a></li>
-                <li><a href="#sec4">الأمانة المهنية</a></li>
+                <li><a href="#sec4">النزاهة المهنية</a></li>
                 <li><a href="#sec5">الأثر المجتمعي</a></li>
-                <li><a href="#sec6">التنشئة والأجيال</a></li>
+                <li><a href="#sec6">التنشئة والتربية</a></li>
                 <li><a href="#sec7">المعوقات والحلول</a></li>
-                <li><a href="#quiz-sec" style="background: var(--accent); color: white;">الاختبار والشهادة</a></li>
+                <li><a href="#quiz-sec" class="btn-nav-quiz">الاختبار والشهادة</a></li>
             </ul>
         </nav>
 
-        <!-- الأقسام السبعة -->
+        <!-- 1. التعريف والمفهوم -->
         <section id="sec1" class="content-card">
-            <h2>1. المفهوم الشامل للأمانة والأبعاد النفسية</h2>
-            <p>تُمثّل الأمانة إحدى أعظم المبادئ الأخلاقية التي تتأسس عليها الحضارات الإنسانية والروابط الاجتماعية. في الاستعمال اللغوي، تُشتق الأمانة من الجذر (أ-م-ن)، والذي يعكس الطمأنينة والسلام والاستقرار النفسي، وهو النقيض المباشر للخيانة والخديعة. أما في الاصطلاح الفلسفي والأخلاقي، فالأمانة هي شعور وإدراك واعي يلتزم بموجبه الإنسان بأداء الواجبات، ورعاية الحقوق، والتزام الصدق والنزاهة في كافة معاملاته الظاهرة والباطنة.</p>
-            <p>من الناحية النفسية، تُصنّف الأمانة كمعيار أساسي لقياس مدى اكتمال الضمير الإنساني والرقابة الذاتية لدى الفرد. الإنسان الأمين يمتلك منظومة قيمية صلبة تمكنه من ضبط سلوكياته وتصرفاته بعيداً عن أعين السلطة أو الرقابة الخارجية، مما ينعكس إيجاباً على صحته النفسية ويمنحه شعوراً متواصلاً بالاتساق الذاتي والسلام الداخلي.</p>
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2>المفهوم الشامل للأمانة والأبعاد النفسية</h2>
+            </div>
+            <p>تُعد قيمة الأمانة المبدأ الأخلاقي الأساسي الذي تقوم عليه الركائز الاجتماعية والحضارية في أي مجتمع إنساني متقدم. في الأصل اللغوي، تعود كلمة الأمانة إلى الجذر (أ-م-ن)، وهو جذر يعكس معاني السكينة، والطمأنينة، والسلام، والوفاء بالعهود، وهي النقيض التام لمفهوم الخيانة والغدر. أما في الاصطلاح الأخلاقي والمؤسسي، فالأمانة هي خلق وشعور واعٍ يلتزم بموجبه الفرد بتأدية الواجبات الموكلة إليه، وحفظ حقوق الآخرين المادية والمعنوية، والصدق التام في القول والفعل.</p>
+            <p>ومن الناحية النفسية والسلوكية، تُشكل الأمانة مؤشراً رئيسياً على اكتمال الضمير الإنساني والرقابة الذاتية. فالشخص الذي يتمتع بفضيلة الأمانة يمتلك منظومة من القيم الصلبة التي تمنع سلوكه من الانحراف، حتى عند غياب السلطة الرقابية الخارجية. هذا الاتساق الذاتي بين الفكر والسلوك يولد شعوراً بالسلام الداخلي والاطمئنان النفسي.</p>
         </section>
 
+        <!-- 2. المنظور الشرعي والتاريخي -->
         <section id="sec2" class="content-card">
-            <h2>2. التأصيل الشرعي والتاريخي لقيمة الأمانة</h2>
-            <p>احتلت قيمة الأمانة موقع الصدارة في التشريعات السماوية كافة، وخاصة في الشريعة الإسلامية التي جعلتها شرطاً أساسياً لإكمال الإيمان وميزاناً للتفاضل بين الأفراد. وقد وردت نصوص قرآنية ونبوية عديدة تؤكد على هذا المعنى، كقوله تعالى: ﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الأَمَانَاتِ إِلَى أَهْلِهَا﴾.</p>
-            <p>وقد أجمعت المجتمعات الإنسانية عبر التاريخ على تقدير الأمناء؛ حيث كان يُعرف النبي محمد ﷺ قبل بعثته بين قومه بـ "الصادق الأمين"، مما يبرهن على أن الأمانة هي خُلُق فطري يُجمع على استحسانه كافة البشر بغض النظر عن خلفياتهم الثقافية. والأمانة في هذا السياق تتجاوز مجرد حفظ المال إلى حفظ الديانة، والأرواح، والأعراض، والمسؤوليات التكليفية.</p>
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2>التأصيل الشرعي والتاريخي لقيمة الأمانة</h2>
+            </div>
+            <p>حظيت قيمة الأمانة بمكانة رفيعة في جميع التشريعات السماوية والمبادئ الإنسانية عبر التاريخ. وفي الشريعة الإسلامية، جُعلت الأمانة ركناً أساسياً لا ينفصل عن الإيمان، وميزاناً حقيقياً للتفاضل بين الأفراد في المجتمع. قال الله تعالى في محكم التنزيل: ﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الأَمَانَاتِ إِلَى أَهْلِهَا﴾.</p>
+            <p>وقد تجلت هذه القيمة بوضوح في السيرة التاريخية للنبلء والأنبياء؛ حيث كان النبي محمد ﷺ يُلقب في قومه قبل البعثة النبوية بـ "الصادق الأمين"، مما أثبت أن قيمة الأمانة هي محل إجماع واحترام لدى المجتمعات البشرية كافة. والأمانة في الفقه الشرعي تتجاوز رد الودائع المالية لتشمل حفظ الدين، والمسؤولية الإدارية، والأسرار، والأرواح، والكرامة الإنسانية.</p>
         </section>
 
+        <!-- 3. صور وأنواع الأمانة -->
         <section id="sec3" class="content-card">
-            <h2>3. صور ومظاهر الأمانة في حياة الفرد</h2>
-            <p>تتعدد صور الأمانة لتغطي مجالات الحياة اليومية كافة، ولا تقتصر على شكل واحد، ومن أبرز هذه الصور:</p>
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2>صور ومظاهر الأمانة في الحياة اليومية</h2>
+            </div>
+            <p>تتعدد مظاهر الأمانة وتتداخل في شتى نواحي الحياة الاجتماعية والعملية، وتتخذ أشكالاً متنوعة تتجاوز النظرة الضيقة المحصورة في الجانب المالي فقط، ومن أبرز هذه الصور:</p>
             <ul class="styled-list">
-                <li><strong>أمانة الجوارح والحواس:</strong> تسخير الجسد والطاقات فيما ينفع الإنسان والمجتمع وتجنب استعمالها في الإضرار بالآخرين.</li>
-                <li><strong>أمانة حفظ الأسرار:</strong> صيانة خصوصيات الأفراد والمؤسسات وعدم إفشائها تحت أي ظرف.</li>
-                <li><strong>أمانة الكلمة والفكر:</strong> تحري الصدق والدقة في نقل الأخبار، وتجنب الشائعات والمعلومات المضللة.</li>
-                <li><strong>أمانة الحقوق والأموال:</strong> أداء الحقوق المالية لأصحابها، وتجنب التعدي على الممتلكات العامة والخاصة.</li>
+                <li><strong>أمانة الجوارح والحواس:</strong> صيانة الجسد والصحة العامة واستخدام النعم والحواس فيما يعود بالخير على الفرد والمجتمع.</li>
+                <li><strong>أمانة حفظ الأسرار والخصوصية:</strong> الالتزام التام بعدم إفشاء أسرار الأفراد أو بيئة العمل تحت أي ضغوط.</li>
+                <li><strong>أمانة الكلمة والفكر:</strong> تحري الصدق والدقة في نقل المعلومات، والابتعاد عن التزييف ونشر الشائعات.</li>
+                <li><strong>أمانة الحقوق والأموال:</strong> العناية بالممتلكات العامة والخاصة، وسداد الحقوق لأصحابها دون تسويف أو غش.</li>
             </ul>
         </section>
 
+        <!-- 4. الأمانة في بيئة العمل -->
         <section id="sec4" class="content-card">
-            <h2>4. الأمانة في بيئة العمل والمؤسسات الحديثة</h2>
-            <p>تُشكل الأمانة المهنية الركيزة الأساسية للحوكمة والنزاهة المؤسسية. وتتجسد أمانة العمل في التزام الموظف بأوقات الدوام الرسمية، واستغلال موارد العمل في أغراضها المحددة، وإتقان المهام الموكلة إليه بأعلى معايير الجودة والتجرد.</p>
-            <p>إن غياب الأمانة في المؤسسات يؤدي إلى انتشار صور الرشوة، المحسوبية، وإهدار المال العام، مما يضعف كفاءة المؤسسة ويهدد استقرارها. بينما يُسهم الالتزام بالأمانة المؤسسية في رفع معدلات الإنتاجية وتعزيز ثقة المتعاملين والمستثمرين.</p>
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2>الأمانة المهنية والحوكمة المؤسسية</h2>
+            </div>
+            <p>تُعتبر الأمانة المهنية العمود الفقري للحوكمة الرشيدة واستدامة المؤسسات في القطاعين العام والخاص. وتتمثل أمانة العمل في احترام ساعات الدوام الرسمي، واستغلال أوقات العمل في تحقيق الأهداف المؤسسية، والحفاظ على أصول الشركة ومواردها من الهدر والإساءة.</p>
+            <p>إن انعدام الأمانة الوظيفية يؤدي إلى تفشي الممارسات الفاسدة ك الرشوة، المحسوبية، وإهدار المال العام، مما يضعف كفاءة المؤسسات ويهدد استقرار الاقتصاد. وفي المقابل، تسهم البيئة التي تُعلي من قيمة النزاهة في رفع الإنتاجية وتعزيز ثقة المستثمرين والمتعاملين.</p>
         </section>
 
+        <!-- 5. الأثر الاجتماعي والاقتصادي -->
         <section id="sec5" class="content-card">
-            <h2>5. الأثر الاجتماعي والاقتصادي لسيادة قيمة الأمانة</h2>
-            <p>تنعكس سيادة الأمانة بصورة مباشرة على قوة التماسك الاجتماعي؛ حيث تسود الثقة بين الأفراد وتتقلص النزاعات والجرائم، مما يقلل من الإنفاق الحكومي على وسائل الرقابة والتقاضي. المجتمع الذي يتصف أفراده بالأمانة يتسم بالمرونة العالية والقدرة على مواجهة الأزمات.</p>
-            <p>اقتصادياً، تُعتبر الأمانة والنزاهة مقوماً رئيساً بجذب الاستثمارات الوطنية والأجنبية؛ إذ يميل المستثمرون إلى العمل في بيئات شفافة تضمن حماية الحقوق وسرعة تنفيذ العقود، مما يرفع من معدلات النمو الاقتصادي ويحقق التنمية المستدامة.</p>
+            <div class="section-header">
+                <div class="section-number">05</div>
+                <h2>الأثر الاجتماعي والاقتصادي لسيادة قيمة الأمانة</h2>
+            </div>
+            <p>عندما تتحول الأمانة من مجرد سلوك فردي إلى ثقافة مجتمعية سائدة، تنعكس آثارها إيجاباً على بناء المجتمع وتماسكه؛ حيث تسود الثقة المتبادلة بين المواطنين والمؤسسات، وتتقلص نسب الجرائم والتعديات، مما يقلل بدوره التكاليف الباهظة الموجهة لأجهزة الحماية والرقابة.</p>
+            <p>على الصعيد الاقتصادي، تُعد النزاهة والأمانة من الميزات التنافسية الجاذبة للاستثمار؛ فالشركات ورؤس الأموال تبحث دائماً عن بيئات عمل شفافة تضمن صيانة العقود والممتلكات، مما يحفز النمو الاقتصادي ويحقق التنمية المستدامة.</p>
         </section>
 
+        <!-- 6. التنشئة والتربية -->
         <section id="sec6" class="content-card">
-            <h2>6. استراتيجيات التنشئة والتربية على الأمانة</h2>
-            <p>تُعد عملية غرس الأمانة مساراً تربوياً ممتداً ينطلق من الأسرة ويمر بالمدارس والجامعات وصولاً إلى وسائل الإعلام. تقع المسؤولية الأولى على الوالدين من خلال تقديم القدوة الحسنة للطفل في الحياة اليومية؛ فالطفل يتعلم الأمانة من خلال الممارسة العملية وليس من خلال النصح النظري فقط.</p>
-            <p>كما يقع على عاتق المناهج التعليمية تطوير أنشطة تفاعلية ومواقف تطبيقية تُبرز قيمة النزاهة وتكافئ السلوكيات الأمينة داخل البيئة المدرسية، مما يسهم في تشكيل وعي الطلاب وبناء شخصياتهم القيادية.</p>
+            <div class="section-header">
+                <div class="section-number">06</div>
+                <h2>استراتيجيات التنشئة والتربية على الأمانة</h2>
+            </div>
+            <p>لا تنشأ قيمة الأمانة تلقائياً، بل هي نتاج عملية تربوية ممتدة تبدأ من الأسرة وتستمر عبر المؤسسات التعليمية والإعلامية. تُعتبر الأسرة المشتل الأول لتشكيل القيم؛ حين يرى الطفل والديه يمارسان الصدق والنزاهة في التفاصيل اليومية، سينشأ بشكل طبيعي على تقدير الأمانة.</p>
+            <p>ويتكامل دور المناهج التعليمية والمؤسسات الأكاديمية مع الأسرة عبر تقديم مواقف وتطبيقات عملية ترسخ مفهوم النزاهة العلمية والاجتماعية لدى الطلاب، مع إبراز القدوات الحسنة وتكريم المتميزين أخلاقياً.</p>
         </section>
 
+        <!-- 7. المعوقات والحلول -->
         <section id="sec7" class="content-card">
-            <h2>7. التحديات المعاصرة ووسائل ترسيخ النزاهة</h2>
-            <p>تواجه قيمة الأمانة في العصر الحديث عدة تحديات متزايدة نتيجة التطور الرقمي والنزعة الاستهلاكية، ومن هذه التحديات: الانفتاح الرقمي وسهولة انتهاك الملكية الفكرية، بروز المغريات المادية، وضغوط البيئة المحيطة. ولمواجهة هذه التحديات يُوصى بالتالي:</p>
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2>التحديات المعاصرة وآليات ترسيخ النزاهة</h2>
+            </div>
+            <p>تواجه قيمة الأمانة في العصر الحديث عدة تحديات معقدة نتيجة الانفتاح الرقمي السريع وتزايد الضغوط المادية، ومن هذه التحديات: سهولة الانتهاكات الرقمية، وضعف الرقابة الذاتية لدى البعض، والتبريرات الفكرية الزائفة للتعدي على حقوق الآخرين. ولمواجهة هذه التحديات يُوصى بالآتي:</p>
             <ul class="styled-list">
-                <li>تعزيز الوازع الأخلاقي والرقابة الذاتية لدى الناشئة عبر برامج نوعية.</li>
-                <li>تحديث التشريعات القوانين والتطبيقات الأجهزة الرقابية للحد من الفساد والانتهاكات.</li>
-                <li>استغلال الوسائط الرقمية الحديثة لنشر ثقافة النزاهة والتعريف بالقدوات المتميزة.</li>
+                <li>تعزيز الوازع الأخلاقي والرقابة الذاتية عبر البرامج التثقيفية والمبادرات التوعوية.</li>
+                <li>تحديث الأنظمة واللوائح الرقابية الصارمة لتجريم الخيانة والفساد وتكريم الأمناء.</li>
+                <li>استغلال المنصات الرقمية ووسائل الإعلام في تقديم القدوات الناجحة ونشر قصص النزاهة.</li>
             </ul>
         </section>
 
-        <!-- قسم الاختبار -->
+        <!-- قسم الاختبار التقييمي -->
         <div id="quiz-sec" class="quiz-wrapper">
             <div class="quiz-header">
-                <h2>الاختبار التقييمي لقيمة الأمانة</h2>
-                <p>أجب عن الأسئلة الـ 15 التالية للحصول على الشهادة الرسمية المعتمَدة</p>
+                <h2>الاختبار التقييمي المعتمد (15 سؤالاً)</h2>
+                <p>يرجى الإجابة عن جميع الأسئلة التالية للحصول على شهادة النزاهة والأمانة الرسمية</p>
             </div>
 
-            <div class="user-info-field">
-                <label for="studentName">الاسم الكامل (كما سيظهر في الشهادة الرسمية):</label>
-                <input type="text" id="studentName" placeholder="أدخل اسمك الثلاثي أو الرباعي..." autocomplete="off">
+            <div class="user-info-box">
+                <label for="fullName">الاسم الكامل (سيتم إدراجه في الشهادة الرسمية):</label>
+                <input type="text" id="fullName" placeholder="أدخل اسمك الثلاثي أو الرباعي هنا..." autocomplete="off">
             </div>
 
-            <form id="quizForm">
+            <form id="assessmentForm">
+                <!-- 15 سؤالاً -->
                 <div class="question-card">
-                    <h4>1. ما هو المعنى اللغوي المباشر للأمانة؟</h4>
+                    <h4>1. ما هو المفهوم اللغوي المباشر والأصيل للأمانة؟</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q1" value="correct"> الطمأنينة والأمن والوفاء بالعهد</label>
-                        <label class="option-label"><input type="radio" name="q1" value="wrong"> السيطرة والقوة المطلقة</label>
+                        <label class="option-label"><input type="radio" name="q1" value="wrong"> القوة والسيطرة والنفوذ</label>
                     </div>
                 </div>
 
                 <div class="question-card">
-                    <h4>2. الضمير الأخلاقي يعتبر هو المحرك الأول للأمانة في حالة غياب الرقابة الخارجية.</h4>
+                    <h4>2. الرقابة الذاتية (الضمير) تُعد المحرك الأول للأمانة في غياب الرقابة الخارجية.</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q2" value="correct"> عبارة صحيحة</label>
                         <label class="option-label"><input type="radio" name="q2" value="wrong"> عبارة خاطئة</label>
@@ -572,7 +671,7 @@
                 </div>
 
                 <div class="question-card">
-                    <h4>3. ما هو اللقب الذي عُرف به النبي محمد ﷺ بين قومه قبل البعثة؟</h4>
+                    <h4>3. اللقب التاريخي الذي عُرف به النبي محمد ﷺ قبل البعثة النبوية هو:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q3" value="correct"> الصادق الأمين</label>
                         <label class="option-label"><input type="radio" name="q3" value="wrong"> الحكيم العادل</label>
@@ -580,7 +679,7 @@
                 </div>
 
                 <div class="question-card">
-                    <h4>4. الامتناع عن إفشاء أسرار العمل والمؤسسة يعتبر شكلاً من أشكال:</h4>
+                    <h4>4. صيانة أسرار المؤسسة وعدم إفشائها للجهات الخارجية يُعد من:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q4" value="correct"> الأمانة والنزاهة المهنية</label>
                         <label class="option-label"><input type="radio" name="q4" value="wrong"> المجاملة العابرة</label>
@@ -588,10 +687,10 @@
                 </div>
 
                 <div class="question-card">
-                    <h4>5. الاستغلال الأمثل لموارد المؤسسة والمحافظة عليها من الهدر يندرج تحت:</h4>
+                    <h4>5. المحافظة على موارد وممتلكات بيئة العمل وحمايتها من الهدر يندرج تحت:</h4>
                     <div class="options-grid">
-                        <label class="option-label"><input type="radio" name="q5" value="correct"> أمانة العمل والمسؤولية الوظيفية</label>
-                        <label class="option-label"><input type="radio" name="q5" value="wrong"> الواجب الشخصي المحدود</label>
+                        <label class="option-label"><input type="radio" name="q5" value="correct"> أمانة المسؤولية الوظيفية</label>
+                        <label class="option-label"><input type="radio" name="q5" value="wrong"> الواجب الشخصي الاختياري</label>
                     </div>
                 </div>
 
@@ -607,20 +706,20 @@
                     <h4>7. أمانة الجوارح والحواس تتطلب من الفرد:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q7" value="correct"> توظيف الطاقة والحواس فيما ينفع وتجنب الضرر</label>
-                        <label class="option-label"><input type="radio" name="q7" value="wrong"> إهمال الصحة وتجاهل سلامة الجسد</label>
+                        <label class="option-label"><input type="radio" name="q7" value="wrong"> إهمال الصحة وتجاهل السلامة</label>
                     </div>
                 </div>
 
                 <div class="question-card">
-                    <h4>8. من النتائج الاقتصادية المباشرة لانتشار الأمانة والنزاهة في المجتمع:</h4>
+                    <h4>8. من النتائج الاقتصادية المباشرة لسيادة قيمة الأمانة في المجتمع:</h4>
                     <div class="options-grid">
-                        <label class="option-label"><input type="radio" name="q8" value="correct"> زيادة جاذبية بيئة الاستثمار وتعزيز التنمية</label>
+                        <label class="option-label"><input type="radio" name="q8" value="correct"> زيادة جاذبية بيئة الاستثمار وتعزيز النمو</label>
                         <label class="option-label"><input type="radio" name="q8" value="wrong"> زيادة تكاليف الحماية والرقابة القانونية</label>
                     </div>
                 </div>
 
                 <div class="question-card">
-                    <h4>9. المؤسسة الأولى المسؤولة عن الغرس الفعلي والمبكر لقيمة الأمانة هي:</h4>
+                    <h4>9. الحاضنة الأولى المسؤولة عن الغرس الفعلي والمبكر لقيمة الأمانة هي:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q9" value="correct"> الأسرة</label>
                         <label class="option-label"><input type="radio" name="q9" value="wrong"> شبكات التواصل الاجتماعي</label>
@@ -628,23 +727,23 @@
                 </div>
 
                 <div class="question-card">
-                    <h4>10. تحري الصدق والعدل وتجنب الشائعات هو تطبيق لمفهوم:</h4>
+                    <h4>10. تحري الصدق ونقل المعلومات بدقة وتجنب نشر الشائعات يُعبر عن:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q10" value="correct"> أمانة الكلمة والفكر</label>
-                        <label class="option-label"><input type="radio" name="q10" value="wrong"> حرية التعبير غير المسؤولة</label>
+                        <label class="option-label"><input type="radio" name="q10" value="wrong"> الحرية المطلقة بدون ضوابط</label>
                     </div>
                 </div>
 
                 <div class="question-card">
-                    <h4>11. قبول الفرد للرشوة أو استخدام النفوذ الشخصي في غير موقعه يعد:</h4>
+                    <h4>11. قبول الرشوة أو استغلال المنصب لتحقيق مآرب شخصية يُعتبر:</h4>
                     <div class="options-grid">
-                        <label class="option-label"><input type="radio" name="q11" value="correct"> خيانة للأمانة واستغلالاً للمنصب</label>
-                        <label class="option-label"><input type="radio" name="q11" value="wrong"> مهارة إدارية في التعامل</label>
+                        <label class="option-label"><input type="radio" name="q11" value="correct"> خيانة صريحة للأمانة واستغلالاً للنفوذ</label>
+                        <label class="option-label"><input type="radio" name="q11" value="wrong"> مهارة في إداريات العمل</label>
                     </div>
                 </div>
 
                 <div class="question-card">
-                    <h4>12. المحافظة على ممتلكات المرافق العامة تُعتبر مسؤولية:</h4>
+                    <h4>12. المحافظة على مرافق الدولة وممتلكاتها العامة يُعد مسؤوليّة:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q12" value="correct"> أمانة مجتمعية مشتركة بين الجميع</label>
                         <label class="option-label"><input type="radio" name="q12" value="wrong"> مسؤولية الجهات الأمنية فقط</label>
@@ -652,15 +751,15 @@
                 </div>
 
                 <div class="question-card">
-                    <h4>13. نشر العلوم والدراسات الدقيقة دون تزييف يدخل ضمن:</h4>
+                    <h4>13. نشر العلوم والدراسات الدقيقة دون تزييف أو سرقة أكاديمية يندرج تحت:</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q13" value="correct"> الأمانة العلمية والأكاديمية</label>
-                        <label class="option-label"><input type="radio" name="q13" value="wrong"> العمل الروتيني المجرد</label>
+                        <label class="option-label"><input type="radio" name="q13" value="wrong"> العمل الروتيني المعتاد</label>
                     </div>
                 </div>
 
                 <div class="question-card">
-                    <h4>14. إتقان العمل وجودة المخرجات يُعد جزءاً لا يتجزأ من مفهوم الأمانة المهنية.</h4>
+                    <h4>14. إتقان العمل وتحسين جودة المخرجات يُعد جزأً أساسياً من الأمانة المهنية.</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q14" value="correct"> عبارة صحيحة</label>
                         <label class="option-label"><input type="radio" name="q14" value="wrong"> عبارة خاطئة</label>
@@ -668,67 +767,71 @@
                 </div>
 
                 <div class="question-card">
-                    <h4>15. ترسيخ النزاهة في المجتمع يقتضي الجمع بين الوازع الذاتي والقوانين الرادعة.</h4>
+                    <h4>15. ترسيخ النزاهة في المجتمع يقتضي الجمع بين الوازع الأخلاقي الذاتي والقوانين الرادعة.</h4>
                     <div class="options-grid">
                         <label class="option-label"><input type="radio" name="q15" value="correct"> عبارة صحيحة</label>
                         <label class="option-label"><input type="radio" name="q15" value="wrong"> عبارة خاطئة</label>
                     </div>
                 </div>
 
-                <button type="button" class="btn-submit" onclick="processQuiz()">إنهاء الاختبار واستخراج الشهادة</button>
+                <button type="button" class="btn-submit-quiz" onclick="evaluateAssessment()">إنهاء الاختبار وإصدار الشهادة الرسمية</button>
             </form>
         </div>
 
     </div>
 
-    <!-- شاشة الشهادة المنفصلة كلياً -->
+    <!-- ==========================================
+         واجهة الشهادة الرسمية والمنفصلة تماماً
+    ========================================== -->
     <div id="certificate-screen">
-        <div class="certificate-page-container">
-            <div class="cert-frame">
-                <div class="cert-border-inner">
-                    <div class="cert-header-title">شهادة إتمام ونزاهة</div>
-                    <div class="cert-subtitle">CERTIFICATE OF INTEGRITY & HONESTY</div>
+        <div class="cert-container">
+            <div class="cert-paper">
+                <div class="cert-inner-frame">
+                    <div class="cert-top-logo">المنظومة الأخلاقية الوطنية للنزاهة</div>
+                    <div class="cert-main-title">شهادة إتمام وتفوق</div>
+                    <div class="cert-sub-title">CERTIFICATE OF INTEGRITY & EXCELLENCE</div>
                     
-                    <p class="cert-body-text">تشهد إدارة المنصة الوطنية للنزاهة بأن السيد/السيدة:</p>
+                    <div class="cert-recipient-label">تشهد إدارة المنصة الوطنية بأن السيد / السيدة:</div>
                     
-                    <div class="cert-user-name" id="certNameDisplay">[ اسم المشارك ]</div>
+                    <div class="cert-user-name" id="displayCertName">[ اسم المشارك ]</div>
                     
-                    <p class="cert-desc">
-                        قد أكمل بنجاح المنهج التثقيفي الخاص بـ <strong>"قيمة الأمانة وأبعادها الأخلاقية والمجتمعية"</strong>، واجتاز الاختبار التقييمي بنجاح واقتدار، وأظهر استيعاباً كاملاً للمبادئ والقيم الأخلاقية المعتمدة.
-                    </p>
+                    <div class="cert-text-body">
+                        قد أتم/ت بنجاح دراسة المنهج المعتمد لـ <strong>"قيمة الأمانة والنزاهة المؤسسية"</strong>، واجتاز/ت الاختبار التقييمي النهائي بنجاح واقتدار، مستوفياً كافة المعايير والمتطلبات الأخلاقية والمعرفية المعتمدة.
+                    </div>
                     
-                    <div class="cert-footer-grid">
-                        <div style="text-align: right;">
-                            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 5px;">تاريخ الإصدار:</p>
-                            <p id="certIssueDate" style="font-weight: 700; color: var(--primary);"></p>
+                    <div class="official-seal">
+                        اعتماد رسمي
+                    </div>
+
+                    <div class="cert-footer-details">
+                        <div class="cert-footer-box" style="text-align: right;">
+                            <div class="title">تاريخ الإصدار والاعتماد:</div>
+                            <div class="value" id="displayCertDate">--/--/----</div>
                         </div>
-                        
-                        <div class="cert-stamp">
-                            مُعتمد رسمياً
-                        </div>
-                        
-                        <div style="text-align: left;">
-                            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 5px;">التوقيع والإعتماد:</p>
-                            <p style="font-weight: 700; color: var(--primary); font-family: 'Amiri', serif; font-size: 1.2rem;">إدارة المنصة الأخلاقية</p>
+
+                        <div class="cert-footer-box" style="text-align: left;">
+                            <div class="title">التوقيع والختم المعتمد:</div>
+                            <div class="value" style="font-family: 'Amiri', serif; font-size: 1.3rem;">إدارة المنصة الأخلاقية</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="cert-actions">
-                <button class="btn-action btn-print" onclick="window.print()">طباعة الشهادة / حفظ PDF</button>
-                <button class="btn-action btn-back" onclick="closeCertificate()">العودة إلى الموقع</button>
+            <!-- أزرار الإجراءات داخل الشاشة المنفصلة -->
+            <div class="cert-actions-bar">
+                <button class="btn-action btn-action-print" onclick="window.print()">طباعة الشهادة / حفظ كـ PDF</button>
+                <button class="btn-action btn-action-close" onclick="closeCertScreen()">العودة لصفحة الموقع</button>
             </div>
         </div>
     </div>
 
     <script>
-        function processQuiz() {
-            const nameInput = document.getElementById('studentName').value.trim();
+        function evaluateAssessment() {
+            const nameInput = document.getElementById('fullName').value.trim();
             
             if (nameInput === "") {
-                alert("يرجى كتابة اسمك الكامل في الخانة المخصصة قبل إرسال الاجابات.");
-                document.getElementById('studentName').focus();
+                alert("يرجى كتابة الاسم الكامل في الخانة المخصصة قبل إرسال الاجابات ليتم إدراجه بالشهادة.");
+                document.getElementById('fullName').focus();
                 return;
             }
 
@@ -743,21 +846,22 @@
             }
 
             if (score >= 10) {
-                // عرض الاسم والتاريخ داخل الشهادة
-                document.getElementById('certNameDisplay').innerText = nameInput;
-                const currentDate = new Date();
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                document.getElementById('certIssueDate').innerText = currentDate.toLocaleDateString('ar-SA', options);
+                // إدراج اسم المستخدم والتاريخ الحالي
+                document.getElementById('displayCertName').innerText = nameInput;
+                
+                const now = new Date();
+                const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('displayCertDate').innerText = now.toLocaleDateString('ar-SA', dateOptions);
 
-                // فتح الشاشة المنفصلة للشهادة
+                // إظهار شاشة الشهادة المنفصلة بالكامل (Full Screen)
                 document.getElementById('certificate-screen').style.display = 'block';
                 window.scrollTo(0, 0);
             } else {
-                alert(`حصلت على درجة ${score} من ${totalQuestions}.\nيرجى إعادة قراءة الأقسام العلمية بتركيز والإجابة مرة أخرى لاجتياز الاختبار (الحد الأدنى للعبور: 10 إجابات صحيحة).`);
+                alert(`لقد أجبت بشكل صحيح على ${score} من أصل ${totalQuestions} أسئلة.\nيلزم الحصول على 10 إجابات صحيحة على الأقل لاجتياز الاختبار وإصدار الشهادة الرسمية. يرجى مراجعة المحتوى وإعادة المحاولة.`);
             }
         }
 
-        function closeCertificate() {
+        function closeCertScreen() {
             document.getElementById('certificate-screen').style.display = 'none';
         }
     </script>
