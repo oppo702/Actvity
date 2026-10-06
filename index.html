@@ -1,924 +1,706 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة الأمانة | خُلُق الأنبياء وعماد الحضارات</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Tajawal & Amiri -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Canvas Confetti for Pledge Generator -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع الأمانة | بوابة الأمانة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-gold: #d4af37;
+      --primary-gold-dark: #b8911b;
+      --bg-light: #fbfbfa;
+      --card-bg: #ffffff;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --border-color: #f0e6cd;
+      --danger-color: #e74c3c;
+    }
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        emerald: {
-                            950: '#07241b',
-                            900: '#0f382c',
-                            800: '#185241',
-                            700: '#236c56',
-                            600: '#2d886d',
-                            500: '#38a585',
-                        },
-                        gold: {
-                            400: '#e5c365',
-                            500: '#d4af37',
-                            600: '#b89428',
-                        },
-                        sand: {
-                            50: '#fdfbf7',
-                            100: '#f7f3e9',
-                            200: '#efe6d5',
-                        }
-                    },
-                    fontFamily: {
-                        tajawal: ['Tajawal', 'sans-serif'],
-                        amiri: ['Amiri', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-        .bg-pattern {
-            background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
+    /* Navbar */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        .dark .bg-pattern {
-            background-image: radial-gradient(rgba(212, 175, 55, 0.12) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      border-bottom: 1px solid #f0f0f0;
+    }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .dark .glass-card {
-            background: rgba(15, 56, 44, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-        }
+    .logo-icon {
+      background-color: var(--primary-gold);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
 
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #b89428 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .logo-text h1 {
+      font-size: 20px;
+      font-weight: 800;
+    }
 
-        .gold-gradient-bg {
-            background: linear-gradient(135deg, #d4af37 0%, #e5c365 50%, #b89428 100%);
-        }
+    .logo-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f382c;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d4af37;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #b89428;
-        }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px 5%;
+      overflow-x: auto;
+    }
 
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #pledge-certificate, #pledge-certificate * {
-                visibility: visible;
-            }
-            #pledge-certificate {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                border: 2px solid #d4af37 !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-    </style>
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #f7f7f7;
+      color: var(--primary-gold);
+    }
+
+    .btn-pledge {
+      background-color: var(--primary-gold);
+      color: white !important;
+      font-weight: 700;
+    }
+
+    .nav-tools {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-right: auto;
+    }
+
+    .icon-btn {
+      background: #f5f5f5;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Section Header */
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .title-content h2 {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .title-content p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .badge-number {
+      background-color: var(--primary-gold);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-icon {
+      color: var(--primary-gold);
+      font-size: 20px;
+      background: #fcf8ec;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .card-list {
+      list-style: none;
+    }
+
+    .card-list li {
+      position: relative;
+      padding-right: 20px;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .card-list li::before {
+      content: "•";
+      color: var(--primary-gold);
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+    }
+
+    /* Tabs Component */
+    .tabs-container {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      margin-bottom: 50px;
+    }
+
+    .tabs-header {
+      display: flex;
+      gap: 10px;
+      background: #f8f8f8;
+      padding: 5px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      width: fit-content;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn.active {
+      background-color: var(--primary-gold);
+      color: white;
+    }
+
+    .tab-content h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    /* Quote Box */
+    .quote-box {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      margin: 15px 0;
+      font-style: italic;
+      color: #444;
+    }
+
+    /* Step Cards (Section 7) */
+    .step-card {
+      border-top: 4px solid var(--primary-gold);
+    }
+    .step-tag {
+      color: var(--primary-gold);
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* Danger Card */
+    .card-danger {
+      border-top: 4px solid var(--danger-color);
+    }
+    .card-danger .card-icon {
+      color: var(--danger-color);
+      background: #fdf2f2;
+    }
+
+    .item-box-danger {
+      background-color: #fdf2f2;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .item-box-warning {
+      background-color: #fdfaf2;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Scroll Top Floating Button */
+    .float-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-gold);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .tabs-header {
+        width: 100%;
+        overflow-x: auto;
+      }
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-sand-50 text-gray-800 dark:bg-emerald-950 dark:text-gray-100 bg-pattern min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-emerald-950">
-
-    <!-- Scroll Progress Bar -->
-    <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 gold-gradient-bg z-50 transition-all duration-150 w-0"></div>
-
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-40 w-full glass-card border-b border-gold-500/20 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-xl shadow-lg transform group-hover:rotate-6 transition-transform">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                        <span class="text-2xl font-extrabold tracking-tight text-emerald-900 dark:text-gold-400 block leading-none">موقع الأمانة</span>
-                        <span class="text-xs text-emerald-700 dark:text-sand-200 font-medium tracking-wide">القيم والأخلاق الفاضلة</span>
-                    </div>
-                </a>
-
-                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
-                    <a href="#sec1" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">1. المفهوم</a>
-                    <a href="#sec2" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">2. الأديان</a>
-                    <a href="#sec3" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">3. التطبيقات</a>
-                    <a href="#sec4" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">4. الرقمية</a>
-                    <a href="#sec5" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">5. الآثار</a>
-                    <a href="#sec6" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">6. الخيانة</a>
-                    <a href="#sec7" class="px-2.5 py-2 text-xs font-semibold hover:text-gold-500 transition-colors">7. غرس القيمة</a>
-                    <a href="#sec8" class="px-2.5 py-2 text-xs font-semibold text-gold-500 font-bold hover:underline transition-colors">8. الأسئلة والتأكيد</a>
-                </nav>
-
-                <div class="flex items-center gap-3">
-                    <button onclick="toggleSearchModal()" aria-label="البحث" class="p-2.5 rounded-xl border border-gray-200 dark:border-emerald-800 text-gray-600 dark:text-sand-100 hover:text-gold-500 transition-all">
-                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
-                    </button>
-
-                    <button onclick="toggleDarkMode()" aria-label="تبديل المظهر" class="p-2.5 rounded-xl border border-gray-200 dark:border-emerald-800 text-gray-600 dark:text-sand-100 hover:text-gold-500 transition-all">
-                        <i class="fa-solid fa-moon text-lg dark:hidden"></i>
-                        <i class="fa-solid fa-sun text-lg hidden dark:block text-gold-400"></i>
-                    </button>
-
-                    <a href="#pledge-zone" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl gold-gradient-bg text-emerald-950 font-bold text-sm hover:shadow-lg transition-all">
-                        <i class="fa-solid fa-signature"></i>
-                        <span>تعهد الأمانة</span>
-                    </a>
-
-                    <button onclick="toggleMobileMenu()" aria-label="القائمة" class="lg:hidden p-2.5 rounded-xl border border-gray-200 dark:border-emerald-800 text-gray-600 dark:text-sand-100">
-                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="top-bar">
+      <div class="logo-container">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="logo-text">
+          <h1>موقع الأمانة</h1>
+          <p>القيم والأخلاق الفاضلة</p>
         </div>
-
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-gold-500/20 bg-sand-50/95 dark:bg-emerald-950/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2">
-            <a href="#sec1" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">1. مفهوم الأمانة وأبعادها</a>
-            <a href="#sec2" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">2. الأمانة في الأديان والثقافات</a>
-            <a href="#sec3" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">3. صور الأمانة وتطبيقاتها</a>
-            <a href="#sec4" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">4. الأمانة الرقمية والتكنولوجيا</a>
-            <a href="#sec5" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">5. الآثار الإيجابية للأمانة</a>
-            <a href="#sec6" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">6. عواقب الخيانة وضياع الأمانة</a>
-            <a href="#sec7" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-semibold hover:bg-emerald-900/10 text-sm">7. آليات وطرق غرس القيمة</a>
-            <a href="#sec8" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-lg font-bold text-gold-500 hover:bg-emerald-900/10 text-sm">8. الاختبار التفاعلي والأسئلة (15 سؤالاً)</a>
-            <a href="#pledge-zone" onclick="toggleMobileMenu()" class="block text-center mt-3 px-4 py-2.5 rounded-lg gold-gradient-bg text-emerald-950 font-bold">توقيع وثيقة الأمانة</a>
-        </div>
-    </header>
-
-    <!-- Global Search Modal -->
-    <div id="search-modal" onclick="closeSearchOnBackdrop(event)" class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-start justify-center pt-20 px-4">
-        <div class="glass-card w-full max-w-2xl rounded-2xl p-6 shadow-2xl border border-gold-500/30">
-            <div class="flex items-center justify-between pb-4 border-b border-gray-200 dark:border-emerald-800">
-                <h3 class="text-xl font-bold text-emerald-900 dark:text-gold-400">البحث الشامل في المحتوى</h3>
-                <button onclick="toggleSearchModal()" class="text-gray-400 hover:text-gold-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="mt-4 relative">
-                <input type="text" id="search-input" onkeyup="performSearch()" placeholder="اكتب كلمة للبحث (مثل: العمل، البيانات، الدين، الأسئلة، الاختبار)..." class="w-full px-5 py-3.5 pr-11 rounded-xl bg-gray-50 dark:bg-emerald-900/50 border border-gray-300 dark:border-emerald-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:border-gold-500">
-                <i class="fa-solid fa-magnifying-glass absolute right-4 top-4 text-gray-400"></i>
-            </div>
-            <div id="search-results" class="mt-4 max-h-80 overflow-y-auto space-y-3">
-                <p class="text-sm text-gray-500 dark:text-gray-400 text-center py-6">ابدأ الكتابة للبحث في الأقسام والأسئلة...</p>
-            </div>
-        </div>
+      </div>
+      <div class="nav-tools">
+        <a href="#" class="btn-pledge nav-link card" style="padding: 8px 15px; border-radius: 8px; text-decoration:none;"><i class="fa-solid fa-handshake"></i> تعهد الأمانة</a>
+        <button class="icon-btn"><i class="fa-regular fa-moon"></i></button>
+        <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
     </div>
+    <nav>
+      <a href="#concept">المفهوم</a>
+      <a href="#religions">في الأديان</a>
+      <a href="#applications">التطبيقات</a>
+      <a href="#digital">الرقمية</a>
+      <a href="#impact">الآثار</a>
+      <a href="#treachery">الخيانه</a>
+      <a href="#values">غرس قيمة</a>
+      <a href="#vision">الرؤية والتشريعات</a>
+    </nav>
+  </header>
 
-    <!-- Hero Banner -->
-    <section class="relative py-20 lg:py-28 overflow-hidden border-b border-gold-500/10">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <main class="container">
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-4xl mx-auto space-y-8">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 text-emerald-900 dark:text-gold-400 text-sm font-bold">
-                    <i class="fa-solid fa-gem text-gold-500"></i>
-                    <span>موسوعة شاملة ومُفصلة عن خلق الأمانة (7 نصوص + قسم الأسئلة)</span>
-                </div>
-
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight text-emerald-950 dark:text-sand-50">
-                    الأمانة: <span class="gold-gradient-text">حارس القيم</span> ورباط المجتمعات
-                </h1>
-
-                <div class="glass-card p-6 rounded-2xl max-w-2xl mx-auto border-r-4 border-r-gold-500">
-                    <p class="font-amiri text-2xl sm:text-3xl text-emerald-900 dark:text-gold-300 leading-relaxed">
-                        "إنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا"
-                    </p>
-                    <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-2 block">[ سورة النساء: 58 ]</span>
-                </div>
-
-                <p class="text-lg sm:text-xl text-gray-600 dark:text-sand-200 leading-relaxed max-w-3xl mx-auto">
-                    الأمانة ليست مجرد حفظٍ للمال والودائع، بل هي جوهر الدِّين، ومقياس نُبل الإنسان، وملاك الاستقرار في العائلات والمؤسسات والأمم.
-                </p>
-
-                <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-                    <a href="#sec1" class="px-8 py-4 rounded-xl gold-gradient-bg text-emerald-950 font-extrabold text-lg shadow-xl hover:-translate-y-0.5 transition-all">
-                        استكشف الأقسام السبعة <i class="fa-solid fa-arrow-down mr-2"></i>
-                    </a>
-                    <a href="#sec8" class="px-8 py-4 rounded-xl border-2 border-emerald-800 dark:border-gold-500/50 text-emerald-900 dark:text-sand-100 font-bold text-lg hover:bg-gold-500/10 transition-all">
-                        الانتقال للأسئلة والاختبار (رقم 8) <i class="fa-solid fa-clipboard-check mr-2"></i>
-                    </a>
-                </div>
-            </div>
+    <!-- القسم 1: المفهوم -->
+    <section id="concept">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>مفهوم الأمانة وأبعادها اللغوية والاصطلاحية</h2>
+          <p>العمق الفلسفي والأخلاقي لمفهوم الأمانة في حياة الإنسان</p>
         </div>
+        <div class="badge-number">1</div>
+      </div>
+
+      <div class="card" style="margin-bottom: 25px;">
+        <p><strong>الأمانة في اللغة:</strong> مشتقة من مادة (أَمِنَ)، والأَمْنُ ضِدُّ الْخَوْفِ. فالأمين هو الشخص الذي يطمئن إليه الناس ويثقون في جليّة أمره ولا يخشون غدره أو خيانته.</p>
+        <p><strong>في الاصطلاح الأخلاقي والشريعة:</strong> هي مفهوم شامل يتسع ليشمل كل ما أؤتمن عليه الإنسان من التكاليف الشرعية، والواجبات الوظيفية، والعهود الاجتماعية، وحقوق الخالق والمخلوقين.</p>
+      </div>
+
+      <h3 style="margin-bottom: 15px;">أبعاد الأمانة الرئيسية:</h3>
+      <div class="grid-3">
+        <div class="card" style="text-align: center;">
+          <i class="fa-regular fa-heart card-icon" style="font-size: 30px;"></i>
+          <h3>الأمانة النفسية وضمير الفرد</h3>
+          <p>وهي التزام الإنسان الداخلي بالاستقامة والأخلاق في سرّه وعلنه، أن تكون رقيباً على نفسك حين تغيب عنك أعين الناس.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <i class="fa-solid fa-users card-icon" style="font-size: 30px;"></i>
+          <h3>الأمانة الاجتماعية والعقود</h3>
+          <p>تشمل الوفاء بالتعهدات والتزامات الحياة اليومية؛ كالصدق في التجارة، والتعامل الطيب مع الجيران، وإتقان الخدمة.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <i class="fa-solid fa-book-open card-icon" style="font-size: 30px;"></i>
+          <h3>الأمانة الفكرية والأكاديمية</h3>
+          <p>تتجلى في توثيق العلم، ونسبة الأفكار والاكتشافات والأبحاث لمصادرها الأصيلة، وتجنب الانتحال والتحريف.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
-
-        <!-- SECTION 1 -->
-        <section id="sec1" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">1</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">مفهوم الأمانة وأبعادها اللغوية والاصطلاحية</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">العمق الفلسفي والأخلاقي لمفهوم الأمانة في حياة الإنسان</p>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
-                <p class="text-lg leading-relaxed">
-                    <strong>الأمانة في اللغة:</strong> مشتقة من مادّة (أَمِنَ)، والأَمْنُ ضِدُّ الْخَوْفِ. فالأمين هو الشخص الذي يطمئن إليه الناس ويثقون في جليّة أمره ولا يخشون غدره أو خيانته.
-                </p>
-                <p class="text-lg leading-relaxed">
-                    <strong>في الاصطلاح الأخلاقي والشريعة:</strong> هي مفهومٌ شامل يتسع ليشمل كل ما أؤتمن عليه الإنسان من التكاليف الشرعية، والواجبات الوظيفية، والعهود الاجتماعية، وحقوق الخالق والمخلوقين.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-                    <div class="p-6 rounded-2xl bg-white/60 dark:bg-emerald-900/40 border border-gold-500/20">
-                        <div class="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-500 text-2xl mb-4">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-emerald-950 dark:text-gold-400 mb-2">الأمانة النفسية وضمير الفرد</h4>
-                        <p class="text-sm leading-relaxed text-gray-600 dark:text-sand-200">التزام الإنسان الداخلي بالاستقامة والأخلاق في سرّه وعلنه ورعاية مراقبة الله في كل أعماله.</p>
-                    </div>
-
-                    <div class="p-6 rounded-2xl bg-white/60 dark:bg-emerald-900/40 border border-gold-500/20">
-                        <div class="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-500 text-2xl mb-4">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-emerald-950 dark:text-gold-400 mb-2">الأمانة الاجتماعية والعقود</h4>
-                        <p class="text-sm leading-relaxed text-gray-600 dark:text-sand-200">الوفاء بالتعهدات؛ كالصدق في التجارة، وإتقان المعاملات، وعدم استغلال ثقة الآخرين.</p>
-                    </div>
-
-                    <div class="p-6 rounded-2xl bg-white/60 dark:bg-emerald-900/40 border border-gold-500/20">
-                        <div class="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center text-gold-500 text-2xl mb-4">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-emerald-950 dark:text-gold-400 mb-2">الأمانة الفكرية والأكاديمية</h4>
-                        <p class="text-sm leading-relaxed text-gray-600 dark:text-sand-200">توثيق العلم، ونسبة الأفكار والأبحاث لمصادرها الأصيلة، وتجنب السرقة العلمية والانتحال.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2 -->
-        <section id="sec2" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">2</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">الأمانة في الأديان والثقافات الإنسانية</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">مكانة الأمانة في التشريع الإسلامي والتراث العالمي</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-card rounded-2xl p-8 border-r-4 border-r-gold-500 space-y-6">
-                    <div class="flex items-center gap-3 text-gold-500 font-bold text-lg">
-                        <i class="fa-solid fa-kaaba text-2xl"></i>
-                        <span>في الشريعة والسيرة النبوية</span>
-                    </div>
-                    <p class="leading-relaxed">
-                        تُعد الأمانة في الإسلام ركناً أسيساً من أركان الإيمان ورسالة الأنبياء. فقد وُصف النبي محمد ﷺ بلقب <strong>"الصادق الأمين"</strong> في مكة المكرمة لحفظه أموال الناس حتى قبل البعثة الشريفة.
-                    </p>
-                    <div class="p-4 bg-emerald-900/10 dark:bg-emerald-900/50 rounded-xl space-y-3">
-                        <p class="font-amiri text-lg text-emerald-950 dark:text-gold-300">
-                            عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: <br>
-                            <span class="font-bold">"أَدِّ الأَمَانَةَ إِلَى مَنِ ائْتَمَنَكَ، وَلا تَخُنْ مَنْ خَانَكَ"</span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-2xl p-8 border-r-4 border-r-emerald-600 space-y-6">
-                    <div class="flex items-center gap-3 text-emerald-600 dark:text-emerald-400 font-bold text-lg">
-                        <i class="fa-solid fa-globe text-2xl"></i>
-                        <span>في التراث والفلسفة الإنسانية</span>
-                    </div>
-                    <p class="leading-relaxed">
-                        اتفقت الحضارات الإنسانية على أن الأمانة هي المعيار الأسمى للمروءة والشرف الإنساني وركيزة قيام النظم الاجتماعية والمالية الموثوقة.
-                    </p>
-                    <div class="p-4 rounded-xl bg-white/40 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800">
-                        <p class="italic text-sm">"الصدق والأمانة هما الفصل الأول في كتاب الحكمة."</p>
-                        <span class="text-xs text-gold-500 font-bold mt-1 block">— توماس جيفرسون</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3 -->
-        <section id="sec3" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">3</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">صور الأمانة وتطبيقاتها في الحياة اليومية</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">المظاهر العملية للأمانة في الشؤون المختلفة</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20">
-                    <h3 class="font-bold text-xl text-emerald-900 dark:text-gold-400 mb-2">أمانة الأموال والودائع</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200">حفظ حقوق الناس المالية عند الاستيداع، ورد الديون في مواعيدها، والامتناع التام عن أكل أموال الناس بالباطل.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20">
-                    <h3 class="font-bold text-xl text-emerald-900 dark:text-gold-400 mb-2">أمانة الكلمة وحفظ الأسرار</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200">نقل الأخبار بدقة دون تحريف، وكتمان الأسرار الشخصية والمهنية وعدم إفشائها للمساس بكرامة الآخرين.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20">
-                    <h3 class="font-bold text-xl text-emerald-900 dark:text-gold-400 mb-2">أمانة العمل والمسؤولية الوظيفية</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200">إتقان الوظيفة، احترام وقت الدوام، والابتعاد التام عن الرشوة والوساطة والمحسوبية.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20">
-                    <h3 class="font-bold text-xl text-emerald-900 dark:text-gold-400 mb-2">أمانة الجوارح والنعم</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200">استخدام الصحة والعقل والعين والأذن في الخير والتعمير وتجنب إيذائها بما يسوء.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4 -->
-        <section id="sec4" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">4</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">الأمانة الرقمية وفي عصر الذكاء الاصطناعي</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">تحديات الأخلاق والتكنولوجيا الحديثة</p>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-8 space-y-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="p-6 rounded-xl bg-white/50 dark:bg-emerald-900/40 text-center space-y-2">
-                        <i class="fa-solid fa-lock text-gold-500 text-3xl"></i>
-                        <h4 class="font-bold">حماية الخصوصية</h4>
-                        <p class="text-xs text-gray-600 dark:text-sand-200">عدم اختراق أو تسريب معلومات الأفراد والمؤسسات.</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-white/50 dark:bg-emerald-900/40 text-center space-y-2">
-                        <i class="fa-solid fa-laptop-code text-gold-500 text-3xl"></i>
-                        <h4 class="font-bold">الملكية الفكرية</h4>
-                        <p class="text-xs text-gray-600 dark:text-sand-200">احترام البرمجيات والأكواد وعدم سرقة المحتوى.</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-white/50 dark:bg-emerald-900/40 text-center space-y-2">
-                        <i class="fa-solid fa-robot text-gold-500 text-3xl"></i>
-                        <h4 class="font-bold">أخلاق الذكاء الاصطناعي</h4>
-                        <p class="text-xs text-gray-600 dark:text-sand-200">التصريح باستخدام الأدوات والشفافية التامة.</p>
-                    </div>
-                    <div class="p-6 rounded-xl bg-white/50 dark:bg-emerald-900/40 text-center space-y-2">
-                        <i class="fa-solid fa-share-nodes text-gold-500 text-3xl"></i>
-                        <h4 class="font-bold">مكافحة الشائعات</h4>
-                        <p class="text-xs text-gray-600 dark:text-sand-200">التثبت من الأخبار قبل إعادة مشاركتها.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5 -->
-        <section id="sec5" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">5</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">الآثار الإيجابية للأمانة</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">كيف تغير الأمانة حياة الأفراد وتدعم نهضة المجتمعات</p>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-8 space-y-4">
-                <ul class="space-y-3 text-gray-700 dark:text-sand-100">
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-gold-500 mt-1"></i>
-                        <span><strong>راحة الضمير والاستقرار النفسي:</strong> العيش بطمأنينة دون خوف من انكشاف سر أو تهمة.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-gold-500 mt-1"></i>
-                        <span><strong>ازدهار المعاملات التجارية:</strong> بناء ثقة مستدامة تجذب رؤوس الأموال وتنعش الاقتصاد.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-gold-500 mt-1"></i>
-                        <span><strong>تماسك الأسرة والمجتمع:</strong> حماية الحقوق وتقليل قضايا التقاضي والنزاعات.</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- SECTION 6 -->
-        <section id="sec6" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">6</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">عواقب الخيانة وضياع الأمانة</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">المخاطر والآثار التدميرية لفقدان النزاهة والأمانة</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glass-card rounded-2xl p-6 border-t-4 border-t-red-500 space-y-3">
-                    <h3 class="font-bold text-xl text-red-500">الآثار الشخصية</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200">سقوط الهيبة، محق البركة، الشعور بالخوف والقلق المستمر وتأنيب الضمير.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border-t-4 border-t-amber-500 space-y-3">
-                    <h3 class="font-bold text-xl text-amber-500">الآثار المجتمعية</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200">شيوع الشك والريبة، تفشي الفساد المالي والإداري، وانهيار جودة الخدمات والمشاريع.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7 -->
-        <section id="sec7" class="scroll-mt-28 space-y-8">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">7</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">آليات وطرق غرس القيمة وتربيتها</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">كيف نزرع خُلُق الأمانة في الأجيال وفي البيئات المؤسسية</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20 space-y-2">
-                    <div class="w-10 h-10 rounded-lg gold-gradient-bg flex items-center justify-center text-emerald-950 font-bold mb-3">
-                        <i class="fa-solid fa-child"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-emerald-900 dark:text-gold-400">القدوة الحسنة في الأسرة</h3>
-                    <p class="text-xs text-gray-600 dark:text-sand-200 leading-relaxed">يتعلم الأبناء الأمانة من خلال مشاهدة سلوك الوالدين اليومي في حفظ الممتلكات والصدق في الحديث وإيفاء الوعود.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20 space-y-2">
-                    <div class="w-10 h-10 rounded-lg gold-gradient-bg flex items-center justify-center text-emerald-950 font-bold mb-3">
-                        <i class="fa-solid fa-school"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-emerald-900 dark:text-gold-400">التعليم والأنشطة المدرسية</h3>
-                    <p class="text-xs text-gray-600 dark:text-sand-200 leading-relaxed">تضمين قيم النزاهة في المناهج، وتفعيل مقاصف الأمانة دون رقيب لتدريب الطلاب على المراقبة الذاتية.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 border border-gold-500/20 space-y-2">
-                    <div class="w-10 h-10 rounded-lg gold-gradient-bg flex items-center justify-center text-emerald-950 font-bold mb-3">
-                        <i class="fa-solid fa-building-user"></i>
-                    </div>
-                    <h3 class="font-bold text-lg text-emerald-900 dark:text-gold-400">البيئة المؤسسية العادلة</h3>
-                    <p class="text-xs text-gray-600 dark:text-sand-200 leading-relaxed">وضع لوائح حوكمة صريحة، ومكافأة الموظفين الأمناء، وتعزيز الشفافية في تقييم الأداء والمكافآت.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 8: QUIZ ZONE & QUESTIONS -->
-        <section id="sec8" class="scroll-mt-28 space-y-12">
-            <div class="flex items-center gap-4">
-                <span class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-2xl shadow-md">8</span>
-                <div>
-                    <h2 class="text-3xl font-extrabold text-emerald-950 dark:text-gold-400">الأسئلة والاختبار التفاعلي الشامل</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">اختبر أمانتك ونزاهتك عبر 15 سؤالاً تفاعلياً ومفصلاً</p>
-                </div>
-            </div>
-
-            <!-- COMPREHENSIVE 15-QUESTION QUIZ -->
-            <div id="quiz-zone" class="glass-card rounded-2xl p-6 sm:p-10 border-2 border-gold-500/40 space-y-8">
-                <div class="text-center space-y-2">
-                    <span class="px-3 py-1 rounded-full bg-gold-500/10 text-gold-500 font-bold text-xs">قسم الأسئلة - 15 سؤالاً</span>
-                    <h3 class="text-3xl font-black text-emerald-950 dark:text-gold-400">اختبار قياس مؤشر الأمانة والنزاهة الشخصية</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200 max-w-xl mx-auto">
-                        أجب بدقة عن كافة الأسئلة الـ 15 التالية للحصول على تقييم شامل ونسبة مئوية لمستوى تطبيقك لخُلُق الأمانة:
-                    </p>
-                </div>
-
-                <form id="quiz-form" onsubmit="calculateQuiz(event)" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                        <!-- Questions 1-15 -->
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">1. إذا وجدت غرضاً أو مالاً مفقوداً في مكان عام، ما هو تصرفك؟</label>
-                            <select id="q1" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أسلمه للجهة المسؤولة أو أبحث عن صاحبه بكل الطرق.</option>
-                                <option value="5">أتركه في مكانه ولا أتدخل.</option>
-                                <option value="0">آخذه لنفسي طالما لم يره أحد.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">2. عند كتابة بحث أو مشروع، كيف تتعامل مع المصادر والمراجع؟</label>
-                            <select id="q2" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أوثق جميع المراجع بدقة وأنسَب كل جهد لصاحبه الأصلي.</option>
-                                <option value="5">أكتفي بذكر بعض المصادر وأتغاضى عن أخرى.</option>
-                                <option value="0">أنقل النصوص وأنسبها لنفسي بدون توثيق.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">3. كيف تتعامل مع أسرار أصدقائك أو زملائك التي اؤتمنت عليها؟</label>
-                            <select id="q3" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أحفظ السر تماماً ولا أفشيه تحت أي ظرف.</option>
-                                <option value="5">أخبر به صديقاً مقرباً جداً بشرط ألا يخبر أحداً.</option>
-                                <option value="0">أتحدث به مجاملةً أو في الخلافات.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">4. إذا أخطأ البائع وأعاد لك باقياً من المال أكثر مما تستحق:</label>
-                            <select id="q4" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أنبهه فوراً وأرجع الزيادة في نفس اللحظة.</option>
-                                <option value="5">أرجعها إذا كان المبلغ كبيراً فقط.</option>
-                                <option value="0">أحتفظ بها وأعتبرها رزقاً إضافياً.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">5. كيف تتصرف مع ساعات الدوام أو الدراسة الرسمية؟</label>
-                            <select id="q5" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">ألتزم بالمواعيد المحددة بالكامل وأستثمر الوقت في العمل والإنتاج.</option>
-                                <option value="5">أتأخر أحياناً بعذر أو بدون عذر إذا لم توجد رقابة شديدة.</option>
-                                <option value="0">أتعمد التغيب والهروب طالما لا توجد عقوبة مباشرة.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">6. عند استخدام أدوات الذكاء الاصطناعي في المهام الأكاديمية أو المهنية:</label>
-                            <select id="q6" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أصرح باستخدامها وأستفيد منها كأداة مساعدة دون استبدال جهدي الذاتي.</option>
-                                <option value="5">أستخدمها أحياناً وأنسخ النتاجات دون توضيح للجهة المسؤولة.</option>
-                                <option value="0">أقدم العمل المصنوع بالذكاء الاصطناعي على أنه جهدي الشخصي الكامل.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">7. إذا اقترضت مبلغاً من المال أو غرضاً من شخص ما:</label>
-                            <select id="q7" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أعيده في الموعد المتفق عليه تماماً وبحالة ممتازة.</option>
-                                <option value="5">أعيده لكن بعد مماطلة وتأخير متكرر.</option>
-                                <option value="0">أنتظر حتى يطالبني به مراراً أو أتهرب من السداد.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">8. موقفك من الممتلكات العامة (الحدائق، الأجهزة، والوسائل التعليمية والمؤسسية):</label>
-                            <select id="q8" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أحافظ عليها وأرعاها كأنها ملكي الشخصي وأحث الآخرين على حمايتها.</option>
-                                <option value="5">أستخدمها بأسلوب عادي دون الاهتمام بصيانتها أو حمايتها.</option>
-                                <option value="0">لا أبالي بتلفها أو الإضرار بها طالما ليست ملكي الخاص.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">9. عندما يصلك خبر غير موثوق أو شائعة عبر وسائل التواصل الاجتماعي:</label>
-                            <select id="q9" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أتحقق من صحته أولاً وإذا لم يثبت أمتنع عن إعادة توزيعه.</option>
-                                <option value="5">أنشره أحياناً في المجموعات مع كُليّة الإشارة بأنه منقول.</option>
-                                <option value="0">أنشره فوراً لجلب التفاعل دون تثبت.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">10. إذا أتيحت لك فرصة للحصول على منفعة غير مشروعة بدون أي رقابة:</label>
-                            <select id="q10" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أرفضها تماماً استشعاراً لمراقبة الله والضمير الأخلاقي.</option>
-                                <option value="5">أتردد كثيراً وقد أقبلها إذا كانت المكاسب كبيرة.</option>
-                                <option value="0">أستغل الفرصة فوراً طالما لن ينكشف أمري.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">11. تصرفك عند وقوع خطأ منك أثناء تنفيذ العمل أو المشروع:</label>
-                            <select id="q11" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أعترف بالخطأ فوراً وأعمل على تصحيحه والتعلم منه.</option>
-                                <option value="5">أحاول التغطية على الخطأ لتجنب الإحراج مع إصلاحه سراً.</option>
-                                <option value="0">ألقي اللوم على الآخرين أو أتنصل من المسؤولية.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">12. كيف تتعامل مع البيانات الشخصية والخصوصية للآخرين على أجهزتك؟</label>
-                            <select id="q12" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أحميها وأحافظ على سريتها ولا أطلع عليها ولا أشاركها إطلاقاً.</option>
-                                <option value="5">أستطلعها أحياناً بدافع الفضول دون استخدامها لضرر.</option>
-                                <option value="0">أشاركها أو أستغلها عند الحاجة.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">13. إذا أُوكلت إليك مسؤولية تقييم زملائك أو مرؤوسيك في العمل أو الدراسة:</label>
-                            <select id="q13" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أقيمهم بالموضوعية والعدل التام بعيداً عن الأهواء الشخصية.</option>
-                                <option value="5">أجامل أصدقائي المقربين أحياناً في التقييم.</option>
-                                <option value="0">أحكم بناءً على العلاقات الشخصية أو المصالح المتبادلة.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">14. موقفك عند التعامل مع الموارد والأجهزة المملوكة لجهة العمل/المدرسة:</label>
-                            <select id="q14" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أستخدمها حصراً لأغراض العمل والأنشطة المحددة قانوناً.</option>
-                                <option value="5">أستخدمها أحياناً لأغراض شخصية خفيفة بدون إذن رسمي.</option>
-                                <option value="0">أعتبرها كأنها ملكي الخاص وأستخدمها بلا قيود.</option>
-                            </select>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-white/50 dark:bg-emerald-900/30 border border-gray-200 dark:border-emerald-800 space-y-2">
-                            <label class="block font-bold text-sm text-emerald-950 dark:text-gold-300">15. عندما تقدم وعداً لأحدهم بالقيام بمهمة معينة:</label>
-                            <select id="q15" required class="w-full p-2.5 rounded-lg bg-gray-50 dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 text-xs">
-                                <option value="10">أبذل كل وسعي للوفاء به في الوقت المحدد بدقة.</option>
-                                <option value="5">أوفي بالوعد غالباً إلا إذا واجهتني مشغولات طارئة.</option>
-                                <option value="0">أعطي الوعود بسهولة ولا أهتم بالوفاء بها.</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <button type="submit" class="w-full py-4 rounded-xl gold-gradient-bg text-emerald-950 font-extrabold text-lg hover:shadow-xl transition-all">
-                        احتساب المجموع والنتيجة الختامية <i class="fa-solid fa-calculator mr-2"></i>
-                    </button>
-                </form>
-
-                <div id="quiz-result" class="hidden text-center p-6 sm:p-8 rounded-2xl bg-emerald-900/10 dark:bg-emerald-900/50 border-2 border-gold-500/40 space-y-3">
-                    <div id="score-percentage" class="text-4xl sm:text-5xl font-black text-gold-500"></div>
-                    <h4 id="quiz-score-title" class="text-2xl font-bold text-emerald-950 dark:text-gold-300"></h4>
-                    <p id="quiz-score-desc" class="text-sm text-gray-600 dark:text-sand-200 leading-relaxed max-w-xl mx-auto"></p>
-                    <button onclick="resetQuiz()" class="mt-4 px-6 py-2 rounded-lg bg-emerald-800 text-white font-bold text-xs hover:bg-emerald-700 transition-colors">إعادة الاختبار <i class="fa-solid fa-rotate-right mr-1"></i></button>
-                </div>
-            </div>
-
-            <!-- INTERACTIVE PLEDGE GENERATOR ZONE -->
-            <div id="pledge-zone" class="glass-card rounded-2xl p-8 border-2 border-gold-500/40 text-center space-y-6">
-                <div class="max-w-2xl mx-auto space-y-4">
-                    <div class="w-16 h-16 mx-auto rounded-full gold-gradient-bg flex items-center justify-center text-emerald-950 text-3xl shadow-lg">
-                        <i class="fa-solid fa-file-contract"></i>
-                    </div>
-                    <h3 class="text-3xl font-black text-emerald-950 dark:text-gold-400">وثيقة وتعهد الأمانة الشخصي</h3>
-                    <p class="text-sm text-gray-600 dark:text-sand-200 leading-relaxed">
-                        سجّل اسمك للحصول على تعهد رسمي باسمك يوثّق التزامك بالأمانة والنزاهة في كافة معاملتك اليومية والرقمية.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
-                        <input type="text" id="pledge-name" placeholder="أدخل اسمك الكامل هنا..." class="flex-1 px-4 py-3 rounded-xl bg-white dark:bg-emerald-900/60 border border-gray-300 dark:border-emerald-700 focus:outline-none focus:border-gold-500 text-center font-bold">
-                        <button onclick="generatePledge()" class="px-6 py-3 rounded-xl gold-gradient-bg text-emerald-950 font-extrabold hover:shadow-lg transition-all whitespace-nowrap">
-                            إصدار التعهد <i class="fa-solid fa-stamp mr-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="pledge-certificate" class="hidden max-w-2xl mx-auto mt-8 p-8 rounded-2xl bg-sand-50 dark:bg-emerald-900/90 border-4 border-double border-gold-500 shadow-2xl relative">
-                    <div class="space-y-4 text-center">
-                        <span class="text-xs font-bold tracking-widest text-gold-500 uppercase">وثيقة التزام إنساني وأخلاقي</span>
-                        <h4 class="text-2xl font-black text-emerald-950 dark:text-gold-300">تعهد بالالتزام بقيمة الأمانة</h4>
-                        <p class="text-sm text-gray-600 dark:text-sand-200">أشهد أنا الموقّع أدناه:</p>
-                        <div id="cert-user-name" class="text-3xl font-black text-emerald-900 dark:text-gold-400 font-amiri py-2 underline decoration-gold-500 underline-offset-8"></div>
-                        <p class="text-sm text-gray-700 dark:text-sand-100 leading-relaxed max-w-lg mx-auto italic">
-                            "بأن أكون أميناً في قولي وعملي، حافظاً للودائع والأسرار، راعياً للأمانة الرقمية والأكاديمية، ومساهماً في بناء مجتمع فاضل يسوده الصدق والنزاهة."
-                        </p>
-                        <div class="pt-6 flex items-center justify-between border-t border-gold-500/30 text-xs text-gray-500 dark:text-gray-400">
-                            <span>تاريخ الإصدار: <strong id="cert-date" class="text-emerald-900 dark:text-gold-400"></strong></span>
-                            <span class="font-bold text-gold-500"><i class="fa-solid fa-shield-halved"></i> موقع الأمانة</span>
-                        </div>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gold-500/20 no-print flex justify-center gap-3">
-                        <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-gold-500 text-emerald-950 font-bold text-xs hover:bg-gold-400 transition-all">
-                            طباعة/حفظ الشهادة <i class="fa-solid fa-print mr-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-auto border-t border-gold-500/20 bg-emerald-900 text-sand-100 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-emerald-950 font-black text-lg">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl font-bold text-gold-400 block">موقع الأمانة</span>
-                        <span class="text-xs text-sand-200">منصة تعزيز الأخلاق والقيم الفاضلة</span>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap justify-center gap-4 text-xs">
-                    <a href="#sec1" class="hover:text-gold-400 transition-colors">1. المفهوم</a>
-                    <a href="#sec2" class="hover:text-gold-400 transition-colors">2. الأديان</a>
-                    <a href="#sec3" class="hover:text-gold-400 transition-colors">3. التطبيقات</a>
-                    <a href="#sec4" class="hover:text-gold-400 transition-colors">4. الرقمية</a>
-                    <a href="#sec5" class="hover:text-gold-400 transition-colors">5. الآثار</a>
-                    <a href="#sec6" class="hover:text-gold-400 transition-colors">6. الخيانة</a>
-                    <a href="#sec7" class="hover:text-gold-400 transition-colors">7. غرس القيمة</a>
-                    <a href="#sec8" class="hover:text-gold-400 font-bold text-gold-400 transition-colors">8. الأسئلة</a>
-                </div>
-            </div>
-
-            <div class="border-t border-emerald-800 pt-6 text-center text-xs text-sand-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p>جميع الحقوق محفوظة &copy; 2026 - موقع قيمة الأمانة التفاعلي</p>
-                <p class="text-gold-400 font-semibold">"الأمانة نُبل في الخلق وسلامة في الصدر"</p>
-            </div>
+    <!-- القسم 2: الأمانة في الأديان -->
+    <section id="religions">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>الأمانة في الأديان والثقافات الإنسانية</h2>
+          <p>مكانة الأمانة في التشريع الإسلامي والتراث العالمي</p>
         </div>
-    </footer>
+        <div class="badge-number">2</div>
+      </div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="scrollToTop()" aria-label="العودة للأعلى" class="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full gold-gradient-bg text-emerald-950 shadow-2xl flex items-center justify-center text-lg opacity-0 pointer-events-none transition-all duration-300 hover:scale-110">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-kaaba card-icon"></i>
+              <h3>في الشريعة والسيرة النبوية</h3>
+            </div>
+          </div>
+          <p>تُعد الأمانة في الإسلام ركناً أساسياً من أركان الإيمان ورسالة الأنبياء، فقد وُصف النبي محمد ﷺ بلقب "الصادق الأمين" في مكة المكرمة حتى قبل البعثة الشريفة.</p>
+          <div class="quote-box">
+            عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ:<br>
+            <strong>"أَدِّ الأَمَانَةَ إِلَى مَنِ ائْتَمَنَكَ، وَلاَ تَخُنْ مَنْ خَانَكَ"</strong><br>
+            <small style="color: #888;">[ رواه أبو داود والترمذي ]</small>
+          </div>
+          <ul class="card-list">
+            <li>الأمانة شرط في اختبارات الولاية والمسؤولية: "قَوِيٌّ أَمِينٌ".</li>
+            <li>من علامات النفاق: "وَإِذَا اؤْتُمِنَ خَانَ".</li>
+          </ul>
+        </div>
 
-    <!-- JavaScript Logic -->
-    <script>
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-globe card-icon"></i>
+              <h3>في التراث والفلسفة الإنسانية</h3>
+            </div>
+          </div>
+          <p>اتقفت الحضارات الإنسانية القديمة والحديثة، من الإغريق والصين القديمة إلى الفلسفات المعاصرة، على أن الأمانة والنزاهة هما المعيار الأسمى للمروءة والشرف الإنساني.</p>
+          <div class="quote-box">
+            "الصدق والأمانة هما الفصل الأول في كتاب الحكمة."<br>
+            <small>– توماس جيفرسون</small>
+          </div>
+          <div class="quote-box">
+            "لا قيمة لأي ذكاء أو موهبة إذا لم تُحط بهما الأمانة والنزاهة المطلقة."<br>
+            <small>– حكم وفلسفات عالمية</small>
+          </div>
+          <p style="font-size: 13px;">فالمجتمعات التي تبني تعاملاتها التجارية والمدنية على الأمانة تزدهر فنونها وعلومها واقتصاداتها، بينما المجتمعات التي يتفشى فيها الغش مصيرها التفكك.</p>
+        </div>
+      </div>
+    </section>
 
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+    <!-- القسم 3: تطبيقات الأمانة -->
+    <section id="applications">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>صور الأمانة وتطبيقاتها في الحياة اليومية</h2>
+          <p>اضغط على أي بطاقة لاستكشاف التفاصيل والمظاهر العملية</p>
+        </div>
+        <div class="badge-number">3</div>
+      </div>
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('hidden');
-            icon.className = menu.classList.contains('hidden') ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
-        }
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-vault card-icon"></i>
+              <h3>أمانة الأموال والودائع</h3>
+            </div>
+            <i class="fa-solid fa-chevron-up"></i>
+          </div>
+          <p>تتمثل في حفظ حقوق الناس المالية عند الاستيداع، ورد الديون في مواعيدها، والامتناع التام عن أكل أموال الناس بالباطل أو السرقة أو الاحتيال.</p>
+          <ul class="card-list">
+            <li>رد الأمانات إلى أصحابها كاملة.</li>
+            <li>المحافظة على المال العام وممتلكات الدولة.</li>
+          </ul>
+        </div>
 
-        window.onscroll = function() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-key card-icon"></i>
+              <h3>أمانة الكلمة وحفظ الأسرار</h3>
+            </div>
+            <i class="fa-solid fa-chevron-up"></i>
+          </div>
+          <p>الكلمة أمانة، ونقل الأخبار بدقة دون تحريف، وكتمان الأسرار الشخصية والمهنية وعدم إفشائها للمساس بكرامة الآخرين هي من أرفع درجات الأمانة.</p>
+          <ul class="card-list">
+            <li>ستر عورات الآخرين وأسرارهم.</li>
+            <li>قول الحق والشهادة بالعدل دون تحيز.</li>
+          </ul>
+        </div>
 
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 400) {
-                btt.classList.remove("opacity-0", "pointer-events-none");
-            } else {
-                btt.classList.add("opacity-0", "pointer-events-none");
-            }
-        };
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-briefcase card-icon"></i>
+              <h3>أمانة العمل والمسؤولية الوظيفية</h3>
+            </div>
+            <i class="fa-solid fa-chevron-up"></i>
+          </div>
+          <p>إتقان الوظيفة وأداؤها على أكمل وجه، احترام أوقات الدوام، الالتزام بالمعايير الأخلاقية، والابتعاد التام عن الرشوة والوساطة غير المشروعة.</p>
+          <ul class="card-list">
+            <li>إتقان المهام لقوله ﷺ: "إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلاً أَنْ يُتْقِنَهُ".</li>
+            <li>محاربة الفساد الإداري والتغيب غير المبرر.</li>
+          </ul>
+        </div>
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-child-reaching card-icon"></i>
+              <h3>أمانة الجوارح والنعم</h3>
+            </div>
+            <i class="fa-solid fa-chevron-up"></i>
+          </div>
+          <p>بدن الإنسان وصحته وعقله ووقت حياته أمانة استودعها الله لديه، ويتوجب عليه استخدام هذه النعم في الخير والتعمير وتجنب إيداعها بالمحرمات والسموم.</p>
+          <ul class="card-list">
+            <li>حفظ السمع والبصر واللسان عن الحرام.</li>
+            <li>استثمار الوقت والعقل فيما ينفع العباد.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-        function toggleSearchModal() {
-            const modal = document.getElementById('search-modal');
-            modal.classList.toggle('hidden');
-            if (!modal.classList.contains('hidden')) {
-                document.getElementById('search-input').focus();
-            }
-        }
+    <!-- القسم 4: الأمانة الرقمية -->
+    <section id="digital">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>الأمانة الرقمية وفي عصر الذكاء الاصطناعي</h2>
+          <p>تحديات الأخلاق والتكنولوجيا الحديثة في القرن الـ21</p>
+        </div>
+        <div class="badge-number">4</div>
+      </div>
 
-        function closeSearchOnBackdrop(e) {
-            if (e.target.id === 'search-modal') {
-                toggleSearchModal();
-            }
-        }
+      <p style="margin-bottom: 20px; color: var(--text-muted);">مع التطور الرقمي الهائل وانتشار وسائل التواصل الاجتماعي وأدوات الذكاء الاصطناعي، اتسعت مفاهيم الأمانة لتشمل سلوكيات جديدة في العالم الافتراضي:</p>
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('search-modal');
-                if (!modal.classList.contains('hidden')) {
-                    toggleSearchModal();
-                }
-            }
-        });
+      <div class="grid-4">
+        <div class="card" style="text-align: center;">
+          <i class="fa-solid fa-lock card-icon"></i>
+          <h3>حماية البيانات والخصوصية</h3>
+          <p style="font-size: 12px;">عدم اختراق أو تسريب معلومات الأفراد والمؤسسات أو استغلالها دون موافقة صريحة.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <i class="fa-solid fa-laptop-code card-icon"></i>
+          <h3>الأمانة الأكاديمية والرقمية</h3>
+          <p style="font-size: 12px;">احترام حقوق الملكية الفكرية، وعدم سرقة الأكواد أو المقالات ونسبها للنفس دون إسناد.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <i class="fa-solid fa-robot card-icon"></i>
+          <h3>أخلاقيات الذكاء الاصطناعي</h3>
+          <p style="font-size: 12px;">التصريح باستخدام أدوات الذكاء الاصطناعي في الأبحاث والأعمال، وتجنب التزييف العميق.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <i class="fa-solid fa-share-nodes card-icon"></i>
+          <h3>مكافحة الشائعات والتحقق</h3>
+          <p style="font-size: 12px;">التثبت من صحة الأخبار قبل إعادة نشرها لمنع إثارة الفتن أو التضليل الرقمي.</p>
+        </div>
+      </div>
+    </section>
 
-        function performSearch() {
-            const query = document.getElementById('search-input').value.trim().toLowerCase();
-            const resultsContainer = document.getElementById('search-results');
-            
-            if (query.length < 2) {
-                resultsContainer.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400 text-center py-6">ابدأ الكتابة للبحث في الأقسام والأسئلة...</p>';
-                return;
-            }
+    <!-- القسم 5: الآثار الإيجابية -->
+    <section id="impact">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>الآثار الإيجابية للأمانة</h2>
+          <p>كيف تغير الأمانة حياة الأفراد وتدعم نهضة المجتمعات</p>
+        </div>
+        <div class="badge-number">5</div>
+      </div>
 
-            const searchableSections = [
-                { id: 'sec1', title: '1. مفهوم الأمانة وأبعادها', text: 'اللغة الاصطلاح الأمانة النفسية الضمير الاجتماعية الفكرية الأكاديمية' },
-                { id: 'sec2', title: '2. الأمانة في الأديان والثقافات', text: 'الإسلام الشريعة النبي محمد الصادق الأمين الحديث الفلسفة' },
-                { id: 'sec3', title: '3. صور الأمانة وتطبيقاتها', text: 'الأموال الودائع الكلمة السر العمل الوظيفة الجوارح النعم الإتقان' },
-                { id: 'sec4', title: '4. الأمانة الرقمية والتكنولوجيا', text: 'البيانات الخصوصية الملكية الفكرية الذكاء الاصطناعي الشائعات' },
-                { id: 'sec5', title: '5. الآثار الإيجابية للأمانة', text: 'الفرد النفس الثقة المجتمع السلام الاقتصاد الاستثمار' },
-                { id: 'sec6', title: '6. عواقب الخيانة وضياع الأمانة', text: 'الخيانة الفساد محق البركة الانهيار الشك' },
-                { id: 'sec7', title: '7. آليات وطرق غرس القيمة', text: 'القدوة المدرسة الأسرة التربية المؤسسات المقصف الشفافية الحوكمة' },
-                { id: 'sec8', title: '8. الأسئلة والاختبار التفاعلي', text: 'الأسئلة الاختبار التفاعلي التعهد النزاهة قياس مؤشر 15 سؤالاً' }
-            ];
+      <div class="tabs-container">
+        <div class="tabs-header">
+          <button class="tab-btn active"><i class="fa-solid fa-user"></i> على مستوى الفرد</button>
+          <button class="tab-btn"><i class="fa-solid fa-users"></i> على مستوى المجتمع</button>
+          <button class="tab-btn"><i class="fa-solid fa-chart-line"></i> على الاقتصاد والتنمية</button>
+        </div>
 
-            const matches = searchableSections.filter(sec => 
-                sec.title.toLowerCase().includes(query) || sec.text.toLowerCase().includes(query)
-            );
+        <div class="tab-content">
+          <h4>ثمار الأمانة للنفس والإنسان:</h4>
+          <ul class="card-list" style="font-size: 15px;">
+            <li><strong>سكينة النفس ورغد الضمير:</strong> يعيش الأمين مطمئناً لا يخشى انكشاف سر أو ملاقاة تهمة.</li>
+            <li><strong>محبة الناس وثقتهم:</strong> تكسب الأمانة صاحبها هيبة ومكانة عالية في قلوب الجميع.</li>
+            <li><strong>البركة والتوفيق:</strong> يستجلب الأمين بركة الله في رزقه ووقت وعافيته وذريته.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-            if (matches.length === 0) {
-                resultsContainer.innerHTML = '<p class="text-sm text-red-500 text-center py-6">لم يتم العثور على نتائج تطابق بحثك.</p>';
-                return;
-            }
+    <!-- القسم 6: عواقب الخيانة -->
+    <section id="treachery">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>عواقب الخيانة وضياع الأمانة</h2>
+          <p>المخاطر والآثار التدميرية لفقدان النزاهة والأمانة</p>
+        </div>
+        <div class="badge-number">6</div>
+      </div>
 
-            resultsContainer.innerHTML = matches.map(match => `
-                <a href="#${match.id}" onclick="toggleSearchModal()" class="block p-4 rounded-xl bg-white/60 dark:bg-emerald-900/40 border border-gold-500/20 hover:border-gold-500 transition-all">
-                    <h4 class="font-bold text-emerald-950 dark:text-gold-400">${match.title}</h4>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">انقر للانتقال المباشر لهذا القسم...</p>
-                </a>
-            `).join('');
-        }
+      <div class="grid-2">
+        <div class="card card-danger">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-triangle-exclamation card-icon"></i>
+              <h3 style="color: var(--danger-color);">الآثار النفسية والشخصية للخيانه</h3>
+            </div>
+          </div>
+          <div class="item-box-danger">محق البركة والشعور بالقلق والخوف المستمر.</div>
+          <div class="item-box-danger">سقوط الهيبة والازدراء الاجتماعي عند الانكشاف.</div>
+          <div class="item-box-danger">العقاب الأخروي الشديد ونكث العهود مع الخالق.</div>
+        </div>
 
-        // 15-Question Quiz Calculation
-        function calculateQuiz(e) {
-            e.preventDefault();
-            let totalScore = 0;
-            const totalQuestions = 15;
-            const maxScore = totalQuestions * 10;
+        <div class="card" style="border-top: 4px solid var(--primary-gold);">
+          <div class="card-header">
+            <div class="card-title-group">
+              <i class="fa-solid fa-store card-icon"></i>
+              <h3 style="color: var(--primary-gold-dark);">الآثار الاجتماعية والاقتصادية</h3>
+            </div>
+          </div>
+          <div class="item-box-warning">تفشي الفساد المالي والإداري وانهيار المؤسسات.</div>
+          <div class="item-box-warning">شيوع الشك بين الناس وضياع حقوق الضعفاء.</div>
+          <div class="item-box-warning">هروب الاستثمارات وتدهور جودة المشاريع والخدمات.</div>
+        </div>
+      </div>
+    </section>
 
-            for (let i = 1; i <= totalQuestions; i++) {
-                const val = parseInt(document.getElementById('q' + i).value) || 0;
-                totalScore += val;
-            }
+    <!-- القسم 7: غرس القيمة -->
+    <section id="values">
+      <div class="section-title">
+        <div class="title-content">
+          <h2>غرس قيمة الأمانة في الأجيال القادمة</h2>
+          <p>خارطة طريق عملي للأسرة والمدرسة والمجتمع</p>
+        </div>
+        <div class="badge-number">7</div>
+      </div>
 
-            const percentage = Math.round((totalScore / maxScore) * 100);
+      <div class="grid-3">
+        <div class="card step-card">
+          <span class="step-tag">الخطوة الأولى</span>
+          <h3>القدوة الحسنة والنموذج</h3>
+          <p>يتعلم الطفل الأمانة من خلال مشاهدة الوالدين والمعلمين وهم يلتزمون بالصدق والوفاء بالوعود وحفظ ممتلكات الآخرين.</p>
+        </div>
 
-            const resultBox = document.getElementById('quiz-result');
-            const scorePercentage = document.getElementById('score-percentage');
-            const scoreTitle = document.getElementById('quiz-score-title');
-            const scoreDesc = document.getElementById('quiz-score-desc');
+        <div class="card step-card">
+          <span class="step-tag">الخطوة الثانية</span>
+          <h3>المكافأة والتشجيع</h3>
+          <p>الاستجابة الإيجابية عند اعتراف الطفل بالخطأ أو إرجاعه لأموال مفقودة، وتكريمه كنموذج يحتذى به أمام زملائه.</p>
+        </div>
 
-            resultBox.classList.remove('hidden');
-            scorePercentage.innerText = percentage + "%";
+        <div class="card step-card">
+          <span class="step-tag">الخطوة الثالثة</span>
+          <h3>التعليم الرقمي والوعي</h3>
+          <p>توعية الشباب بكيفية احترام حقوق الملكية الفكرية، والتعامل الأخلاقي مع الإنترنت وحفظ خصوصية الآخرين.</p>
+        </div>
+      </div>
+    </section>
 
-            if (percentage >= 90) {
-                scoreTitle.innerText = "مستوى استثنائي: أمين قدوة ومثالي 🌟";
-                scoreDesc.innerText = "ما شاء الله! أنت تعبر عن أعلى مستويات النزاهة والضمير الحي في معاملتك المالية والوظيفية والرقمية، وتُمثل قدوة حسنة للمجتمع.";
-            } else if (percentage >= 70) {
-                scoreTitle.innerText = "مستوى ممتاز: درجة أمانة عالية 👍";
-                scoreDesc.innerText = "أداء ممتاز! تطبق خلق الأمانة في أغلب مجالات حياتك، ويمكنك الوصول للكمال الأخلاقي من خلال المزيد من الانتباه للتفاصيل الدقيقة.";
-            } else if (percentage >= 50) {
-                scoreTitle.innerText = "مستوى متوسط: يحتاج إلى تعزيز ومراجعة ⚠️";
-                scoreDesc.innerText = "تلتزم بالحد الأدنى من الأمانة، لكن توجد جوانب (كالجانب الرقمي أو الالتزام بالأوقات) تحتاج منك إلى تحسين وتعهد مستمر.";
-            } else {
-                scoreTitle.innerText = "تنبيه: يتوجب إعادة النظر في ممارسات النزاهة 🚨";
-                scoreDesc.innerText = "تظهر النتيجة وجود قصور في تطبيق أبعاد الأمانة. ننصحك بقراءة الموسوعة ملياً والعمل على مراجعة ضوابط التعامل في الحياة اليومية والرقمية.";
-            }
+  </main>
 
-            resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+  <!-- Floating Back to Top Button -->
+  <a href="#" class="float-btn"><i class="fa-solid fa-arrow-up"></i></a>
 
-        function resetQuiz() {
-            document.getElementById('quiz-form').reset();
-            document.getElementById('quiz-result').classList.add('hidden');
-            document.getElementById('quiz-zone').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function generatePledge() {
-            const nameInput = document.getElementById('pledge-name').value.trim();
-            if (!nameInput) {
-                alert('لطفاً، أدخل اسمك الكامل لإصدار التعهد الرسمي.');
-                return;
-            }
-
-            document.getElementById('cert-user-name').innerText = nameInput;
-            
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('cert-date').innerText = today.toLocaleDateString('ar-SA', options);
-
-            const certBox = document.getElementById('pledge-certificate');
-            certBox.classList.remove('hidden');
-            certBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 120,
-                    spread: 80,
-                    origin: { y: 0.6 },
-                    colors: ['#d4af37', '#236c56', '#fdfbf7']
-                });
-            }
-        }
-    </script>
 </body>
 </html>
